@@ -1,6 +1,17 @@
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+
+export interface NavItem {
+    label: string;
+    path: string;
+};
+
+export type HeaderProps = {
+    title: string;
+    links: NavItem[];
+};
+
+const Header: React.FC<HeaderProps> = ({ title, links }) => {
     return (
         <header className="website-header">
             <div className="logo">
@@ -9,18 +20,18 @@ const Header = () => {
         
             <nav className="nav-NavLinks">
                 <ul>
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/">About Us</NavLink></li>
-                    <li><NavLink to="/">Simulator</NavLink></li>
-                    <li><NavLink to="/">Real Data</NavLink></li>
-                    <li><NavLink to="/">Info</NavLink></li>
+                    { links.map((link) => (
+                        <li key={link.path}>
+                            <NavLink 
+                                to = {link.path}
+                                className = {({ isActive }) => isActive ? "active" : ""}
+                            >
+                                {link.label}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
-
-            {/* change this to an onClick function??? */}
-            <div className="cta">
-                <button className="btn-primary">Get Started</button>
-            </div>
         </header>
     );
 };
