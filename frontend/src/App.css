@@ -48,6 +48,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
 }
 
 body {
@@ -69,6 +70,13 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
+}
+
+.website-footer {
+  color: rgb(255, 255, 255);
+  font-family: 'Gotham', Calibri, sans-serif;
+  align-content: center;
+  position: fixed;
 }
 
 .nav-NavLinks ul {
