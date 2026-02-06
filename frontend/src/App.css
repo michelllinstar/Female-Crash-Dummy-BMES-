@@ -11,8 +11,6 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-  /* justify-content: space-between; */
-  align-items: left;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -60,7 +58,6 @@ body {
 
 .website-header {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 1rem 5%;
   background-color: #000000;
@@ -100,4 +97,11 @@ body {
 
 .nav-NavLinks a:hover {
   color: #ffffff;
+}
+
+
+.nav-NavLinks {
+  position: absolute;                /* 🔧 ADDED */
+  left: 50%;                         /* 🔧 ADDED */
+  transform: translateX(-50%);       /* 🔧 ADDED */
 }
