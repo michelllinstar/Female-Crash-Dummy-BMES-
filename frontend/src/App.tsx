@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from "./components/header.js";
 import Footer from './components/footer.js';
+import TextBox from './components/textBox.js';
 
 function App() {
   const NavLinks = [
@@ -13,10 +14,27 @@ function App() {
     { label: 'Info', path: '/' },
   ];
 
+  const ps_title = "Product Statement";
+  const ps_text = "Our platform leverages cutting-edge bioengineering tools to develop wearable sensors \
+                   that monitor physiological signals in real time, ensuring accurate and personalized \
+                   health insights across diverse users.";
+
+  const impact_title = "Impact";
+  const impact_text = "Our crash test dummy addresses this gap by accurately representing female body \
+                       geometry and biomechanics using low-cost, accessible materials. This makes \
+                       inclusive testing more affordable and scalable, allowing vehicle safety designs \
+                       to better account for women’s injury risk without the high cost of traditional crash test models.";
+
+  const pd_title = "Product Description";
+  const pd_text = "some text";
+
   return (
     <div className="App">
       <Header title="title" links={NavLinks}/>
       <div className="main-layout">
+        <TextBox title={ps_title} text={ps_text}/>
+        <TextBox title={impact_title} text={impact_text}/>
+        <TextBox title={pd_title} text={pd_text}/>
       </div>
       <Footer />
     </div>
