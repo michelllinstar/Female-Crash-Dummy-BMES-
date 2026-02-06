@@ -46,6 +46,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
 }
 
 body {
@@ -58,13 +59,20 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background-color: #ffffff;
+  background-color: #000000;
   /* box-shadow: 0 2px 10px rgba(173, 164, 164, 0.1); */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+}
+
+.website-footer {
+  color: rgb(255, 255, 255);
+  font-family: 'Gotham', Calibri, sans-serif;
+  align-content: center;
+  position: fixed;
 }
 
 .nav-NavLinks ul {
@@ -82,10 +90,10 @@ body {
   transition: color 0.3s ease;
 }
 
-.nav-NavLinks a.active {
+/* .nav-NavLinks a.active {
   color: #007bff;
   border-bottom: 2px solid #007bff;
-}
+} */
 
 .nav-NavLinks a:hover {
   color: #007bff;
