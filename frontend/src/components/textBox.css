@@ -1,0 +1,64 @@
+/* Page background so glass effect is visible */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: Arial, sans-serif;
+}
+
+/* Glass bubble card */
+.product-statement {
+border-radius: 20px;
+  width: 100%;
+  height: 100%;             /* fill the parent container height */
+  box-sizing: border-box;    /* include padding in width/height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertically center content */
+  align-items: center;       /* horizontally center content */
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  color: white;
+
+    padding: 10px;             /* minimal padding to avoid sticking to edges */
+  overflow: hidden;          /* hide overflowing text */
+  text-align: center;
+}
+
+/* Title styling */
+.statement-title {
+  margin: 0 0 15px 0;
+  font-size: 28px;
+  font-weight: bold;
+    /* prevent highlight/halo behind text */
+  background: transparent;
+  -webkit-text-fill-color: white;
+}
+
+/* Paragraph styling */
+.statement-description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+    /* prevent highlight/halo behind text */
+  background: transparent;
+  -webkit-text-fill-color: white;
+}

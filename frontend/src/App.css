@@ -105,3 +105,36 @@ body {
   left: 50%;                         /* 🔧 ADDED */
   transform: translateX(-50%);       /* 🔧 ADDED */
 }
+
+
+
+/* Full page container */
+.app-container {
+  display: flex;
+  flex-direction: column; /* stack header, content, footer */
+  min-height: 100vh;      /* full viewport height */
+
+    /* Diamond-like gradient: center #17291B, corners #060404 */
+  background: radial-gradient(
+    ellipse at center,
+    #17291B 0%,
+    #060404 100%
+  );
+}
+
+/* Content grows to fill available space */
+.page-content {
+  flex: 1;                /* grow */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Optional Footer styling */
+footer {
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
