@@ -5,6 +5,8 @@ import './App.css'
 import Header from "./components/header.js";
 import Footer from './components/footer.js';
 import TextBox from './components/textBox.js';
+import Button from './components/button.js';
+import Label from './components/label.js';
 
 function App() {
   const NavLinks = [
@@ -26,12 +28,25 @@ function App() {
                        to better account for women’s injury risk without the high cost of traditional crash test models.";
 
   const pd_title = "Product Description";
-  const pd_text = "some text";
+  const pd_text = "some text that lwk might have to wait for a bit";
+
+  const image_info1 = "placeholder";
+  const image_info2 = "placeholder";
+  const image_info3 = "placeholder";
 
   return (
     <div className="App">
       <Header title="title" links={NavLinks}/>
       <div className="main-layout">
+        <Label className="frontpage-image" info={image_info1}></Label>
+        <Label className="frontpage-image" info={image_info2}></Label>
+        <Label className="frontpage-image" info={image_info3}></Label>
+
+        <Button className="simulate-button" nameOfButton="Simulate"></Button>
+        <Button className="frontpage-button" nameOfButton="About Us"></Button>
+        <Button className="frontpage-button" nameOfButton="Real Data"></Button>
+        <Button className="frontpage-button" nameOfButton="Information"></Button>
+
         <TextBox title={ps_title} text={ps_text}/>
         <TextBox title={impact_title} text={impact_text}/>
         <TextBox title={pd_title} text={pd_text}/>
