@@ -8,7 +8,7 @@ export type TextProps = {
 
 const TextBox: React.FC<TextProps> = ({ title, text }) => {
    return (
-       <div className="statement">
+       <div className="product-statement">
            <h1 className="statement-title"> {title} </h1>
            <p className="statement-description"> {text} </p>
        </div>

@@ -1,13 +1,26 @@
 /* Page container */
 .info-page {
+  padding-top: 800px;
   display: flex;
   flex-direction: column; /* VStack */
   align-items: center;    /* center everything horizontally */
-  gap: 40px;
-  padding: 40px;
-  background-color: transparent;
+  gap: 20px;
+  padding: 0px;
+   background: radial-gradient(
+    ellipse at top,
+    #17291B 0%,
+    #17291B 10%,
+    #060404 40%,
+    #060404 100%
+  );
+
+
+  /* Creates the diamond effect */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'MyFont', sans-serif;
 }
 
 /* Top TextBox centered */
@@ -15,8 +28,9 @@
   display: flex;
   justify-content: center;
   width: calc(100% - 200px); /* leave 100px on each side */
-  max-width: 1000px;         /* optional max width */
+   /* optional max width */
   height: auto;               /* auto height to fit text */
+  padding: 0, 500px;  
 }
 
 /* HStack: image left, VStack of TextBoxes right */
@@ -29,6 +43,7 @@
   width: calc(100% - 200px); /* leave 100px margin on each side */
   max-width: 1200px;
   box-sizing: border-box;
+  background: transparent;
 }
 
 /* Image container: dynamic width = 50% of HStack */
@@ -43,6 +58,7 @@
   height: 100%;         /* match VStack height */
   border-radius: 20px;
   object-fit: cover;
+  background: transparent;
 }
 
 /* VStack of TextBoxes: dynamic width = 50% of HStack */
@@ -51,6 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background: transparent;
 }
 
 /* Each TextBox inside VStack */
@@ -72,6 +89,8 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
+
+  
 }
 
 /* Responsive: stack on smaller screens */
@@ -84,4 +103,19 @@
   .info-vstack {
     width: 100%; /* full width on mobile */
   }
+}
+
+.app-header {
+  width: 1440px;
+  height: 58px;
+  background-color: transparent;
+  color: #fff;             /* text color */
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: left;  /* horizontal center */
+  padding-top: 48px;         /* slight push down */
+  box-sizing: border-box;
+  font-size: 36px;
+  font-family: 'MyFont', sans-serif;
+  margin: 0 auto;           /* centers header on wider screens */
 }

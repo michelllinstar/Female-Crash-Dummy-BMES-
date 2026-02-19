@@ -52,8 +52,20 @@
 body {
   width: 100%;
   height: 100%;
-  background-color: #000000;
-  color: #ffffff;
+  
+  background: radial-gradient(
+    ellipse at top,
+    #17291B 0%,
+    #17291B 10%,
+    #060404 40%,
+    #060404 100%
+  );
+
+
+  /* Creates the diamond effect */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: 'MyFont', sans-serif;
 }
 
 .website-header {
@@ -115,11 +127,18 @@ body {
   min-height: 100vh;      /* full viewport height */
 
     /* Diamond-like gradient: center #17291B, corners #060404 */
-  background: radial-gradient(
-    ellipse at center,
+   background: radial-gradient(
+    ellipse at top,
     #17291B 0%,
+    #17291B 10%,
+    #060404 40%,
     #060404 100%
   );
+
+
+  /* Creates the diamond effect */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 /* Content grows to fill available space */
@@ -137,4 +156,19 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
+}
+
+/* index.css */
+@font-face {
+  font-family: 'MyFont';
+  src: url('./assets/Gotham\ Fonts\ Family/Gotham-Book.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply globally */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'MyFont', sans-serif;
 }

@@ -1,20 +1,27 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../assets/Gotham\ Fonts\ Family/Gotham-Book.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Page background so glass effect is visible */
+
 body {
   margin: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  font-family: Arial, sans-serif;
+  
+  font-family: 'MyFont', sans-serif;
 }
 
 /* Glass bubble card */
 .product-statement {
 border-radius: 20px;
   width: 100%;
-  height: 100%;             /* fill the parent container height */
+  height: auto;             /* fill the parent container height */
   box-sizing: border-box;    /* include padding in width/height */
   display: flex;
   flex-direction: column;
@@ -38,7 +45,7 @@ border-radius: 20px;
 
   color: white;
 
-    padding: 10px;             /* minimal padding to avoid sticking to edges */
+    padding: 5%;             /* minimal padding to avoid sticking to edges */
   overflow: hidden;          /* hide overflowing text */
   text-align: center;
 }
@@ -51,6 +58,7 @@ border-radius: 20px;
     /* prevent highlight/halo behind text */
   background: transparent;
   -webkit-text-fill-color: white;
+  font-family: 'MyFont', sans-serif;
 }
 
 /* Paragraph styling */
@@ -61,4 +69,5 @@ border-radius: 20px;
     /* prevent highlight/halo behind text */
   background: transparent;
   -webkit-text-fill-color: white;
+  font-family: 'MyFont', sans-serif;
 }

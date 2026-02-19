@@ -3,9 +3,15 @@ import "./Info.css";
 import TextBox from './components/textBox.js';
 import femalecd from './assets/femalecd.jpeg';
 
+
+export function Header({ text }: { text: string }) {
+  return <header className="app-header">{text}</header>;
+}
+
 const Info: React.FC = () => {
   return (
    <div className="info-page">
+     <Header text="Information" />
       {/* Top TextBox centered */}
       <div className="top-textbox-container">
         <TextBox

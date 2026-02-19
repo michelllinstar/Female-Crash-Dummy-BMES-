@@ -1,0 +1,12 @@
+/* header.css */
+header {
+    width: 1440px;
+    height: 58px;
+    background-color: #333; /* example background color */
+    color: #fff;            /* text color */
+    display: flex;
+    align-items: center;    /* vertically center content */
+    justify-content: space-between; /* space out child elements */
+    padding: 0 20px;        /* optional horizontal padding */
+    box-sizing: border-box; /* ensures padding doesn't increase width */
+}
