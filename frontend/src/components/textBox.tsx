@@ -1,6 +1,9 @@
+import React from "react";
+import "./TextBox.css"; // import the CSS
+
 export type TextProps = {
-    title: string;
-    text: string;
+    title?: string;
+    text?: string;
 };
 
 const TextBox: React.FC<TextProps> = ({ title, text }) => {

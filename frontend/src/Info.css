@@ -1,0 +1,87 @@
+/* Page container */
+.info-page {
+  display: flex;
+  flex-direction: column; /* VStack */
+  align-items: center;    /* center everything horizontally */
+  gap: 40px;
+  padding: 40px;
+  background-color: transparent;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Top TextBox centered */
+.top-textbox-container {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 200px); /* leave 100px on each side */
+  max-width: 1000px;         /* optional max width */
+  height: auto;               /* auto height to fit text */
+}
+
+/* HStack: image left, VStack of TextBoxes right */
+.info-hstack {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center; /* center HStack horizontally */
+  align-items: stretch;    /* make children equal height */
+  width: calc(100% - 200px); /* leave 100px margin on each side */
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+/* Image container: dynamic width = 50% of HStack */
+.info-image-container {
+  flex: 1;              /* take half of HStack */
+  flex-basis: 0;        /* allow flex to distribute width equally */
+}
+
+/* Image styling */
+.info-image {
+  width: 100%;
+  height: 100%;         /* match VStack height */
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* VStack of TextBoxes: dynamic width = 50% of HStack */
+.info-vstack {
+  flex: 1;              /* take half of HStack */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Each TextBox inside VStack */
+.info-vstack .product-statement {
+  width: 100%;          /* fill VStack width */
+  height: 170px;        /* fixed height for TextBox */
+  padding: 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+  .info-hstack {
+    flex-direction: column;
+    width: calc(100% - 40px); /* less margin on mobile */
+  }
+  .info-image-container,
+  .info-vstack {
+    width: 100%; /* full width on mobile */
+  }
+}
