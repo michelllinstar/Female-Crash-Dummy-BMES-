@@ -9,18 +9,14 @@ export function Header({ text }: { text: string }) {
   return <header className="app-header">{text}</header>;
 }
 
-const Info: React.FC = () => {
+const AboutUs: React.FC = () => {
   return (
    <div className="info-page">
-     <Header text="Information" />
       {/* Top TextBox centered */}
       <div className="top-textbox-container">
         <TextBox
-          title="ABREVIATED INJURY SCALE"
-          text={`A globally recognized system used to describe and classify the severity of injuries.
-It provides a standardized way to assess trauma, making it easier for clinicians, researchers,
-and safety professionals to communicate injury severity, compare outcomes, 
-and support data-driven decisions in injury prevention and care.`}
+          title="ABOUT OUR TEAM"
+          text={`Meet the UCLA BMES Design Team dedicated to creating innovative solutions for crash safety testing.`}
         />
       </div>
 
@@ -33,16 +29,16 @@ and support data-driven decisions in injury prevention and care.`}
 
         {/* Right VStack of TextBoxes */}
         <div className="info-vstack">
-          <TextBox title="Head Injury Criteria" />
-          <TextBox title="Femur Load Risk" />
-          <TextBox title="Chest Injury" />
-          <TextBox title="Neck Injury Criteria" />
-          <TextBox title="Pelvis Load Risk" />
-          <TextBox title="AIS" />
+          <TextBox title="Our Mission" />
+          <TextBox title="Innovation" />
+          <TextBox title="Diversity" />
+          <TextBox title="Excellence" />
+          <TextBox title="Collaboration" />
+          <TextBox title="Impact" />
         </div>
       </div>
     </div>
   );
 };
 
-export default Info;
+export default AboutUs;

@@ -1,0 +1,201 @@
+/* SimulateUI Container - Glass Effect */
+.simulate-ui-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 551px;
+  height: 728px;
+  margin: 2rem auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+/* Progress Indicator */
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .progress-circle {
+  background-color: #ff8c00;
+  border-color: #ff8c00;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.progress-line {
+  flex: 1;
+  max-width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Grid Layout */
+.simulate-ui-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Row Container - 2 Columns */
+.simulate-row {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Column */
+.simulate-col {
+  display: flex;
+  justify-content: center;
+}
+
+/* Input Fields */
+.simulate-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-family: 'MyFont', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Static Labels */
+.simulate-label {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'MyFont', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  box-sizing: border-box;
+}
+
+.simulate-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.simulate-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Divider with Text */
+.simulate-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0 10px 0;
+  width: 100%;
+}
+
+.simulate-divider::before,
+.simulate-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.simulate-divider span {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+ 
+
+/* Simulate Button */
+.simulate-button {
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 30px;
+  background-color: #ff8c00;
+  color: #975228;
+  border: none;
+  border-radius: 8px;
+  font-family: 'MyFont', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.simulate-button:hover {
+  background-color: #ff7700;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+}
+
+.simulate-button:active {
+  background-color: #ff6600;
+  transform: scale(0.98);
+} white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .simulate-ui-container {
+    max-width: 100%;
+    margin: 1rem;
+    padding: 20px;
+  }
+
+  .simulate-row {
+    gap: 10px;
+  }
+
+  .simulate-input {
+    padding: 10px;
+    font-size: 12px;
+  }
+}

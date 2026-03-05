@@ -1,0 +1,14 @@
+/* Home Page Container */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: transparent;
+  color: white;
+  font-family: 'MyFont', sans-serif;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
