@@ -5,9 +5,6 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from "./components/header.js";
 import Footer from './components/footer.js';
-import TextBox from './components/textBox.js';
-import Button from './components/button.js';
-import Label from './components/label.js';
 import Info from "./Info.js";
 import Home from "./Home.js";
 import AboutUs from "./AboutUs.js";
