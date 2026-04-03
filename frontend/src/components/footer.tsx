@@ -7,11 +7,11 @@ const Footer = () => {
         <footer className="website-footer">
              <div className="footer-hstack">
                 <div className="vstack">
-                    <img src={ucla} alt="UCLA" className="footer-img1" style={{ height: '200px', width: 'auto', maxHeight: '200px' }} />
+                    <img src={ucla} alt="UCLA" className="footer-img1" style={{ height: '100px', width: 'auto', maxHeight: '100px' }} />
                     <p className="footer-text">Made with ♡ by UCLA BMES Design Team!</p>
                 </div>
                 
-                <img src={bmes} alt="UCLA BMES" className="footer-img2" style={{ height: '200px', width: 'auto', maxHeight: '200px' }} />
+                <img src={bmes} alt="UCLA BMES" className="footer-img2" style={{ height: '100px', width: 'auto', maxHeight: '100px' }} />
                 
                 <div className="links-side">
                     <div className="footer-links">

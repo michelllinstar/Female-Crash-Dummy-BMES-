@@ -7,7 +7,11 @@
   border-top: 1px solid #333;
   font-family: 'Gotham', Calibri, sans-serif;
   box-sizing: border-box;
+  margin-top: auto;   /* ← pushes footer to bottom when content is short */
+  flex-shrink: 0;     /* ← prevents footer from being squished */
+  width: 100%;
 }
+
 
 .footer-img1 {
   height: 40px;
