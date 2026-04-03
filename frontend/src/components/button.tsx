@@ -1,15 +1,13 @@
 import React from 'react';
 import "./button.css";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  nameOfButton: string;
-}
+// Using React's built-in type for children support
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const Button: React.FC<ButtonProps> = ({className, nameOfButton, ...props}) => {
-  
+const Button: React.FC<ButtonProps> = ({ className, children, ...props }) => {
   return (
-    <button className={`${className}`} {...props}>
-        {nameOfButton}
+    <button className={`transparent-button ${className ?? ""}`} {...props}>
+      {children}
     </button>
   );
 };

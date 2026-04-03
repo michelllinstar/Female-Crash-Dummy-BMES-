@@ -1,24 +1,29 @@
 .transparent-button {
   font-family: 'MyFont', sans-serif;
-  background: transparent;
-  color: #975228;
-
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* Use a tiny bit of white alpha to "tint" the blur */
+  background: rgba(255, 255, 255, 0.05); 
+  
+  /* Thinner, more subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
   padding: 10px 20px;
-
   cursor: pointer;
   font-size: 16px;
+  color: white; /* Ensure text is visible */
 
+  /* This is the magic for transparency */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Remove the dark outer shadow and the harsh inset */
+  box-shadow: none;
+  
+  outline: none;
   transition: all 0.2s ease;
 }
 
-/* Hover effect */
 .transparent-button:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: white;
-}
-
-/* Click effect */
-.transparent-button:active {
-  transform: scale(0.97);
+  border-color: rgba(255, 255, 255, 0.2);
 }

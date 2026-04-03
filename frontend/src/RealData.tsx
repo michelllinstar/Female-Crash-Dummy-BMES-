@@ -3,6 +3,7 @@ import "./RealData.css";
 import TextBox from './components/textBox.js';
 import femalecd from './assets/femalecd.png';
 import Footer from './components/footer.js';
+import Title from "./components/title.js";
 
 
 export function Header({ text }: { text: string }) {
@@ -12,10 +13,7 @@ export function Header({ text }: { text: string }) {
 const RealData: React.FC = () => {
   return (
    <div className="RealData-page">
-     <Header text="Real Data" />
-
-
-      {/* HStack: Image on left, TextBox on right */}
+      <Title text="Real Data" />
       <div className="info-hstack">
         {/* Left Image */}
         <div className="info-image-container">

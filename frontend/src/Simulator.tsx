@@ -3,6 +3,7 @@ import "./Simulator.css";
 import SimulateUI from './components/SimulateUI.js';
 import Footer from './components/footer.js';
 import femalecd from './assets/femalecd.png';
+import Title from "./components/title.js";
 
 
 export function Header({ text }: { text: string }) {
@@ -12,7 +13,6 @@ export function Header({ text }: { text: string }) {
 const Simulator: React.FC = () => {
   return (
     <div className="simulator-page">
-      <Header text="Simulator" />
       <div className="info-hstack">
         <div className="info-image-container">
           <img src={femalecd} alt="Crash Dummy" className="info-image" />

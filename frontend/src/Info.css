@@ -2,113 +2,207 @@
 .info-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
-  padding: 20px;
+  padding: 0 100px 100px 100px;
   background: transparent;
   color: white;
   font-family: 'MyFont', sans-serif;
-  flex: 1;
   width: 100%;
+  min-height: 100vh;
+  height: auto;
   box-sizing: border-box;
 }
 
-/* Top TextBox centered */
-.top-textbox-container {
-  display: flex;
-  justify-content: center;
-  width: calc(100% - 200px); /* leave 100px on each side */
-   /* optional max width */
-  height: auto;               /* auto height to fit text */
-  padding: 0, 500px;  
+/* Top TextBox */
+/* Top flip card - fixed height, both sides absolute */
+.top-flip-container .flip-front,
+.top-flip-container .flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* HStack: image left, VStack of TextBoxes right */
+.top-flip-container .flip-back {
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.top-flip-container .flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+/* VStack flip cards - height driven by content */
+.info-vstack .flip-front {
+  position: relative;
+  height: auto;
+}
+
+.info-vstack .flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: rotateY(180deg);
+}
+
+
+/* HStack */
 .info-hstack {
   display: flex;
   flex-direction: row;
   gap: 40px;
-  justify-content: center; /* center HStack horizontally */
-  align-items: stretch;    /* make children equal height */
-  width: calc(100% - 200px); /* leave 100px margin on each side */
+  justify-content: center;
+  align-items: stretch;
+  width: calc(100% - 200px);
   max-width: 1200px;
   box-sizing: border-box;
   background: transparent;
 }
 
-/* Image container: dynamic width = 50% of HStack */
+/* Image container */
 .info-image-container {
   flex: 1;
   flex-basis: 0;
   display: flex;
-  align-items: center;   /* vertically center image next to text */
+  align-items: center;
 }
 
-/* Image styling */
+/* Image */
 .info-image {
   width: 100%;
-  height: auto;       /* keeps natural aspect ratio */
-  object-fit: contain; 
+  height: auto;
+  object-fit: contain;
   border-radius: 0;
   background: transparent;
   display: block;
 }
 
-/* VStack of TextBoxes: dynamic width = 50% of HStack */
+/* VStack */
 .info-vstack {
-  flex: 1;              /* take half of HStack */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
   background: transparent;
 }
 
-/* Each TextBox inside VStack */
-.info-vstack .product-statement {
-  width: 100%;          /* fill VStack width */
-  height: 170px;        /* fixed height for TextBox */
-  padding: 20px;
-  box-sizing: border-box;
+.info-vstack .top-textbox-container {
+  width: 100%;
+  height: auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
 
+/* Flip card */
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.info-vstack .flip-card {
+  height: auto;
+}
+
+.flip-front,
+.flip-back {
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.info-vstack .flip-front {
+  position: relative;
+  height: auto;
+}
+
+.info-vstack .flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* TextBox */
+.info-vstack .product-statement {
+  width: 100%;
+  height: auto;
+  padding: 50px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  /* Glass effect */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-
-  
 }
 
-/* Responsive: stack on smaller screens */
-@media (max-width: 900px) {
-  .info-hstack {
-    flex-direction: column;
-    width: calc(100% - 40px); /* less margin on mobile */
-  }
-  .info-image-container,
-  .info-vstack {
-    width: 100%; /* full width on mobile */
-  }
-}
-
+/* Header */
 .app-header {
-  width: 1440px;
+  width: 100%;
   height: 58px;
   background-color: transparent;
-  color: #fff;             /* text color */
+  color: #fff;
   display: flex;
-  align-items: center;      /* vertical center */
-  justify-content: left;  /* horizontal center */
-  padding-top: 48px;         /* slight push down */
+  align-items: center;
+  justify-content: left;
+  padding-top: 48px;
   box-sizing: border-box;
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px);
   font-family: 'MyFont', sans-serif;
-  margin: 0 auto;           /* centers header on wider screens */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .info-page {
+    padding: 0 20px;
+  }
+
+  .info-hstack {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .top-textbox-container {
+    width: 100%;
+  }
+
+  .info-image-container,
+  .info-vstack {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-page {
+    padding: 0 12px;
+  }
 }

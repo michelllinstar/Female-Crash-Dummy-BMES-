@@ -2,10 +2,9 @@
 .simulator-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   gap: 0 px;
-  padding: 0 px;
+  padding: 0 100px;
   background: transparent;
   color: white;
   font-family: 'MyFont', sans-serif;

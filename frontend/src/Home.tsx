@@ -3,7 +3,7 @@ import "./Home.css";
 import TextBox from './components/textBox.js';
 import Button from './components/button.js';
 import Label from './components/label.js';
-
+import femalecd from './assets/femalecd.png';
 
 
 const Home: React.FC = () => {
@@ -22,21 +22,41 @@ allowing vehicle safety designs to better account for women’s injury risk with
   const image_info1 = "placeholder";
   const image_info2 = "placeholder";
   const image_info3 = "placeholder";
-    return (
-    <div className="main-layout">
-          <Label className="frontpage-image" info={image_info1}></Label>
-          <Label className="frontpage-image" info={image_info2}></Label>
-          <Label className="frontpage-image" info={image_info3}></Label>
 
-          <Button className="simulate-button" nameOfButton="Simulate"></Button>
-          <Button className="frontpage-button" nameOfButton="About Us"></Button>
-          <Button className="frontpage-button" nameOfButton="Real Data"></Button>
-          <Button className="frontpage-button" nameOfButton="Information"></Button>
-
-          <TextBox title={ps_title} text={ps_text}/>
-          <TextBox title={impact_title} text={impact_text}/>
-          <TextBox title={pd_title} text={pd_text}/>
+  return (
+    <div className="main-layout"> 
+<div className="vstack">
+  <div className="hero-content">
+            <div className="vstack">
+              <div className="hero-text">
+                FEMALE CRASH DUMMY SIMULATOR
+              </div>
+                  <div className="hero-textboxes">  
+                    <TextBox
+                        text={`The Female Crash dummy simulator is a blah blah blah; placeholder text`}
+                        style={{ width: '598px', height: '430px' }}
+                    />
+                    <TextBox
+                        text={`Our Mission: We aim to develop a low-cost female crash 
+                          test dummy modeled after a 50th percentile woman to address 
+                          the gender gaps in vehicle safety testing. `}
+                          style={{ width: '350px', height: '148px' }}
+                    />
+                  </div>
+            </div>
+            </div>
+          <div className="buttons-container">
+      <button className="Simulate" onClick={() => {}}>Simulate</button>
+        <div className="hStack">  
+          <button className="AboutUs" onClick={() => {}}>About Us</button>
+          <button className="RealData" onClick={() => {}}>Real Data</button>
+          <button className="Information" onClick={() => {}}>Information</button>
         </div>
+      </div>
+  
+</div>
+  
+    </div>
   );
 };
 
