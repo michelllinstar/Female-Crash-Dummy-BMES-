@@ -46,6 +46,7 @@ that monitor physiological signals in real time, ensuring accurate and personali
           <button className="RealData" onClick={() => {}}>Real Data</button>
           <button className="Information" onClick={() => {}}>Information</button>
         </div>
+        </div>
         <div className="descriptions">
           <div className="description-block">
             <h1>Problem Statement</h1>
@@ -71,8 +72,6 @@ that monitor physiological signals in real time, ensuring accurate and personali
             />
           </div>
         </div>
-      </div>
-  
 </div>
   
     </div>
