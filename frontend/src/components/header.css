@@ -1,0 +1,27 @@
+/* header.css */
+header {
+    width: 1440px;
+    height: 58px;
+
+    color: #fff;            /* text color */
+    display: flex;
+    align-items: center;    /* vertically center content */
+    justify-content: space-between; /* space out child elements */
+    padding: 0 20px;        /* optional horizontal padding */
+    box-sizing: border-box; /* ensures padding doesn't increase width */
+     /* fully transparent background */
+   background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}

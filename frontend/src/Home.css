@@ -1,0 +1,211 @@
+.main-layout {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  aspect-ratio: 1440 / 2000; 
+  display: flex;
+  align-items: flex-start;  
+  justify-content: flex-start;
+
+  padding: clamp(24px, 6vw, 120px);
+
+  color: white;
+  font-family: 'MyFont', sans-serif;
+
+  /* background image */
+  background-image: url("./assets/femalecd.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* gradient overlay */
+.main-layout::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 34%,
+    #0C0C0A 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* content layer */
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 700px;
+  min-height: 460px;
+
+  display: flex;
+
+  align-items:top;
+  margin-bottom: 20px; /* space below */
+  margin-left: 100px;   /* space left */
+  margin-right: 100px;  /* space right */
+}
+/* make textbox responsive */
+.hero-content .textbox {
+  width: 100%;
+}
+
+.vstack {
+  flex: 1;              /* take half of HStack */
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  background: transparent;
+}
+
+.hero-text {
+  font-family: 'MyFont', sans-serif;
+  font-size: 64px;
+  line-height: 1.5;
+  color: white; /* if needed */
+}
+.hero-textboxes {
+  position: relative; /* parent container needs relative positioning */
+  width: 100%;
+  height: 400px; /* or whatever space you want */
+}
+
+.hero-textboxes > div {
+  position: absolute; /* allows overlap */
+  top: 0;  /* adjust as needed */
+  left: 0;
+  width: 90%; /* optional sizing */
+  z-index: 1; /* later boxes can have higher z-index to appear on top */
+}
+
+/* Example for staggered layering */
+.hero-textboxes > div:nth-child(2) {
+  top: 250px;
+  left: -50px;
+  z-index: 2;
+}
+.buttons-container {
+  margin-top: 100px;            /* space below textboxes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;           /* centers the container horizontally */
+  gap: 28px;                     /* spacing between buttons */
+  width: 100%;                   /* container takes full width */
+  max-width: 600px;              /* optional: limits width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons-container .Simulate {
+  width: 200px;                   /* button width */    /* bright orange */
+
+  cursor: pointer;
+  border-radius: 6px;             /* optional: rounded corners */
+  transition: all 0.2s ease;      /* smooth hover effect */
+
+ 
+  /* Force transparency and strip defaults */
+  background: #975228  !important; 
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* The blur only works if there's something BEHIND the button */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+
+  /* Border & Text */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  
+  /* Ensure no shadow is adding white "bulk" */
+  box-shadow: none !important;
+
+}
+
+/* Optional hover effect */
+.buttons-container .Simulate:hover {
+  background-color: #e66a00;      /* slightly darker orange on hover */
+}
+.buttons-container .AboutUs {
+   /* Use a tiny bit of white alpha to "tint" the blur */
+  background: rgba(255, 255, 255, 0.05); 
+  
+  /* Thinner, more subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white; /* Ensure text is visible */
+
+  /* This is the magic for transparency */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Remove the dark outer shadow and the harsh inset */
+  box-shadow: none;
+  
+  outline: none;
+  transition: all 0.2s ease;
+  width: 200px;                  /* stretches the top button to full container width */
+}
+.buttons-container .RealData {
+  width: 200px;   /* Use a tiny bit of white alpha to "tint" the blur */
+  background: rgba(255, 255, 255, 0.05); 
+  
+  /* Thinner, more subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white; /* Ensure text is visible */
+
+  /* This is the magic for transparency */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Remove the dark outer shadow and the harsh inset */
+  box-shadow: none;
+  
+  outline: none;
+  transition: all 0.2s ease;
+                /* stretches the top button to full container width */
+}
+.buttons-container .Information {
+  width: 200px;      /* Use a tiny bit of white alpha to "tint" the blur */
+  background: rgba(255, 255, 255, 0.05); 
+  
+  /* Thinner, more subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white; /* Ensure text is visible */
+
+  /* This is the magic for transparency */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Remove the dark outer shadow and the harsh inset */
+  box-shadow: none;
+  
+  outline: none;
+  transition: all 0.2s ease;
+             /* stretches the top button to full container width */
+}
+
+.hStack {
+  display: flex;                   /* space between the horizontal buttons */
+  gap: 20px;                       /* spacing between buttons */
+  width: 100%;                  /* make hStack the same width as container */
+  justify-content: space-between; /* spread buttons across the container */
+}

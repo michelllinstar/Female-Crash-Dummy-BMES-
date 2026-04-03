@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import "./header.css";
 
 export interface NavItem {
     label: string;

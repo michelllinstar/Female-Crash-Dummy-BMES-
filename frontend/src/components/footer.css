@@ -1,0 +1,36 @@
+/* Footer - Sticks to bottom with flexbox */
+footer {
+  flex-shrink: 0;
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid #333;
+  font-family: 'Gotham', Calibri, sans-serif;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* Footer links styling */
+footer a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+footer p {
+  margin: 8px 0;
+}
+
+/* Responsive footer */
+@media (max-width: 600px) {
+  footer {
+    padding: 15px;
+    font-size: 12px;
+  }
+}
