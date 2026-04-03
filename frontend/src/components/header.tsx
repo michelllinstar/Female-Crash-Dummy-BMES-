@@ -15,7 +15,8 @@ const Header: React.FC<HeaderProps> = ({ title, links }) => {
     return (
         <header className="website-header">
             <div className="logo">
-                <NavLink to="/">frontpage</NavLink>
+                {/* <NavLink to="/">frontpage</NavLink> */}
+                <img src="" alt="logo"/>
             </div>
         
             <nav className="nav-NavLinks">

@@ -209,3 +209,19 @@
   width: 100%;                  /* make hStack the same width as container */
   justify-content: space-between; /* spread buttons across the container */
 }
+
+.descriptions {
+  margin-top: 40px;
+}
+
+.description-block {
+  margin-top: 5%;
+}
+
+h1 {
+  margin: 10px;
+}
+
+.bottom-textboxes {
+  width: 100%;
+}
