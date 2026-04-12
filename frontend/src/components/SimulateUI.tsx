@@ -23,14 +23,13 @@ const SimulateUI: React.FC = () => {
 
   const rows = [
     { label: "Please Enter Your Information: ", divider: true },
-    { staticLabel: "bust", index: 0 },
-    { staticLabel: "waist", index: 1 },
-    { staticLabel: "hip", index: 2 },
-    { staticLabel: "height", index: 3 },
+    { staticLabel: "Head Circumference (cm)", index: 0 },
+    { staticLabel: "Height (cm)", index: 1 },
+    { staticLabel: "Sitting Height (cm)", index: 2 },
+    { staticLabel: "Weight (kg)", index: 3 },
     { label: "Type of Crash: ", divider: true },
-    { staticLabel: "angle", index: 4 },
-    { staticLabel: "type", index: 5 },
-    { staticLabel: "speed", index: 6 },
+    { staticLabel: "Angle (degrees)", index: 4 },
+    { staticLabel: "Closing Speed (km/h)", index: 6 },
   ];
 
   return (
