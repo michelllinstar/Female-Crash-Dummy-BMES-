@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../assets/Gotham\ Fonts\ Family/Gotham-Book.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.member-card {
+  flex: 1 1 200px; /* Adjusts based on screen size */
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+/* glass overlay */
+.image-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.member-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-name {
+   margin: 0 0 0px 0;
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  -webkit-text-fill-color: white;
+  font-family: 'MyFont', sans-serif;
+}
+
+.member-year {
+  margin: 0 0 0px 0;
+  font-size: 12px;
+  font-weight: bold;
+  background: transparent;
+  -webkit-text-fill-color: white;
+  font-family: 'MyFont', sans-serif;
+}
+.member-major {
+  margin: 0 0 0px 0;
+  font-size: 12px;
+  font-weight: bold;
+  background: transparent;
+  -webkit-text-fill-color: white;
+  font-family: 'MyFont', sans-serif;
+}

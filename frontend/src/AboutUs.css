@@ -1,14 +1,102 @@
-/* AboutUs Page Container */
-.info-page {
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0px 40px 60px 40px;
+  color: white;
+  font-family: 'MyFont', sans-serif;
+}
+
+/* Title */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* =========================
+   TOP GRID (PM / OTHER)
+   ========================= */
+.pm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* =========================
+   BOTTOM ROW CONTAINER
+   ========================= */
+.elec-grid,
+.mech-grid,
+.soft-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Put the 3 grids in a row */
+.elec-grid,
+.mech-grid,
+.soft-grid {
+  display: grid;
+}
+
+/* Wrapper for bottom row */
+.about-us-container > .elec-grid,
+.about-us-container > .mech-grid,
+.about-us-container > .soft-grid {
+  display: grid;
+}
+
+/* Make bottom 3 sit in a row */
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* THIS is the key part: row layout */
+.elec-grid,
+.mech-grid,
+.soft-grid {
+  display: grid;
+}
+
+/* Container holding bottom row */
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom row wrapper */
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+/* ensure 2x2 inside each grid */
+.elec-grid,
+.mech-grid,
+.soft-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rd-value-spacer {
+ min-height: 128px;
+ flex-shrink: 0;
+}
+.v-stack{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+  justify-content: center;
+  gap: 30px;
   background: transparent;
-  color: white;
-  font-family: 'MyFont', sans-serif;
-  flex: 1;
-  width: 100%;
-  box-sizing: border-box;
 }

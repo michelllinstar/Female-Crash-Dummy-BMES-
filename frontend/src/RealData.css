@@ -1,99 +1,302 @@
-/* RealData Page Container */
-.RealData-page {
+@font-face {
+  font-family: 'MyFont';
+  src: url('../assets/Gotham Fonts Family/Gotham-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ─── Page ──────────────────────────────────────────────────── */
+.rd-page {
+  min-height: 100vh;
+  background: #0c110c;
   display: flex;
   flex-direction: column;
-  align-items: left;
-  gap: 10px;
-  padding: 0 100px;
-  background: transparent;
-  color: white;
+  align-items: center;
   font-family: 'MyFont', sans-serif;
-  flex: 1;
-  width: 100%;
+  color: #fff;
+  padding: 32px 16px 80px;
   box-sizing: border-box;
 }
 
-/* Top TextBox centered */
-.top-textbox-container {
+.rd-content {
+  width: 100%;
+  max-width: 1178px;
   display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ─── Video ─────────────────────────────────────────────────── */
+.rd-video-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rd-crash-video {
+  width: 100%;
+  max-width: 878px;
+  min-height: 555px;
+  border-radius: 10px;
+  background: #000;
+  display: block;
+  /* use the browser's native dark controls */
+  color-scheme: dark;
+}
+
+.rd-video-meta {
+  width: 100%;
+  max-width: 878px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rd-crash-label {
+  font-family: 'MyFont', sans-serif;
+}
+
+.rd-timestamp {
+  font-family: 'MyFont', sans-serif;
+}
+
+/* ─── AIC wrapper ───────────────────────────────────────────── */
+.rd-aic-wrapper {
+  width: 100%;
+}
+
+/* ─── Two-column panels ─────────────────────────────────────── */
+.rd-panels {
+  display: flex;
+  align-items: center;
+  gap: 49px;
+  width: 100%;
+}
+
+/* ─── Shared panel styles ───────────────────────────────────── */
+.rd-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 30px 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  gap: 0px;
+}
+
+.rd-panel-title {
+  font-family: 'MyFont', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4px;
+  width: 100%
+}
+
+
+/* ─── Left: Type of Crash ───────────────────────────────────── */
+.rd-panel-left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
-  width: calc(100% - 200px);
+  gap: 0px;
+}
+.rd-panel-left-body {
+  display: flex;
+  flex-direction: row; /* This puts fields and image side-by-side */
+  align-items: center;
+  width: 100%;
+  gap: 0px;
+}
+
+.rd-panel-left .rd-panel-title {
+  width: 100%;
+}
+
+.rd-crash-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0px;
+}
+
+.rd-field-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.rd-field-label {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 128px;
+  text-align: center;
+}
+
+.rd-field-value {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 160px;
+}
+
+.rd-car-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.rd-car-img {
   height: auto;
-  padding: 0;
-  margin: 2rem auto;
+  min-width: 10px;
+  max-width: 200px;
+  max-height: 100px;
+  opacity: 0.85;
+  filter: brightness(0.9);
 }
 
-/* Horizontal Stack Container - 50/50 Layout */
-.info-hstack {
+/* ─── Right: Values ─────────────────────────────────────────── */
+.rd-panel-right {
+  flex: 0.8;
+}
+
+.rd-values-list {
   display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-  align-items: stretch;
-  width: calc(100% - 200px);
-  max-width: 1200px;
-  box-sizing: border-box;
-  background: transparent;
-  margin: 2rem auto;
+  flex-direction: column;
+  gap: 7px;
 }
 
-/* Image and TextBox containers: 50% width each */
-.info-image-container {
-  flex: 1;
-  flex-basis: 0;
-  min-width: 0;
+.rd-value-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
-/* Image styling */
-.info-image {
+.rd-value-label {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 128px;
+  text-align: center;
+}
+
+.rd-value-num {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 160px;
+  text-align: center;
+}
+/* Invisible spacer — same width as rd-value-label so the button
+   lands directly under the rd-value-num column */
+.rd-value-spacer {
+ min-width: 128px;
+  flex-shrink: 0;
+}
+
+.rd-learn-more {
+  margin-top: 8px;
+  background: rgba(180, 120, 50, 0.75);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: 'MyFont', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.rd-learn-more:hover {
+  background: rgba(200, 140, 60, 0.9);
+}
+
+/* ─── Measured Data ─────────────────────────────────────────── */
+.rd-panel-measured {
   width: 100%;
-  height: 100%;
-  max-width: 551px;
-  max-height: 728px;
-  object-fit: contain;
-  background: transparent;
 }
 
-/* TextBox takes 50% on desktop */
-.info-hstack > div:last-child,
-.info-hstack > .text-box-container {
-  flex: 1;
-  flex-basis: 0;
-  min-width: 0;
+.rd-measured-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Responsive: stack on smaller screens */
-@media (max-width: 900px) {
-  .info-hstack {
-    flex-direction: column;
-    width: calc(100% - 40px);
-    gap: 1.5rem;
-    margin: 1rem auto;
-  }
-
-  .info-image-container,
-  .info-hstack > div:last-child,
-  .info-hstack > .text-box-container {
-    width: 100%;
-    flex: none;
-  }
-  
-  .top-textbox-container {
-    width: calc(100% - 40px);
-  }
+.rd-measured-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
+.rd-measured-part {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 4px 12px;
+  min-width: 128px;
+  text-align: center;
+}
+
+.rd-measured-metric {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 12px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.rd-measured-val {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 4px 12px;
+  min-width: 160px;
+  text-align: center;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .info-hstack {
-    width: calc(100% - 20px);
-    gap: 1rem;
-  }
-  
-  .top-textbox-container {
-    width: calc(100% - 20px);
-  }
-  
-  .RealData-page {
-    padding-top: 80px;
+  .rd-panels {
+    flex-direction: column;
   }
 }
+

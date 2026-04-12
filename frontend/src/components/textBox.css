@@ -71,3 +71,7 @@ border-radius: 20px;
   -webkit-text-fill-color: white;
   font-family: 'MyFont', sans-serif;
 }
+
+.statement-title {
+  text-transform: uppercase;
+}

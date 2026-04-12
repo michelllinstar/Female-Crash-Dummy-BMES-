@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0 px;
-  padding: 0 100px;
+  padding: 50px 100px 100px 100px;
   background: transparent;
   color: white;
   font-family: 'MyFont', sans-serif;
@@ -22,7 +22,7 @@
   width: calc(100% - 200px);
   max-width: 1200px;
   height: auto;
-  max-height: calc(100vh );
+  max-height: 80vh;
   box-sizing: border-box;
   background: transparent;
   margin: 0 auto;
@@ -90,7 +90,7 @@
   }
   
   .simulator-page {
-    padding-top: 80px;
+    padding-top: 50px;
   }
   
   .info-image {

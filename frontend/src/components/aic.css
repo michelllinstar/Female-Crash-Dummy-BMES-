@@ -1,41 +1,90 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../assets/Gotham Fonts Family/Gotham-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ─── Wrapper ───────────────────────────────────────────────── */
 .aic-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 4px;
+  user-select: none;
 }
 
+/* ─── Top label row ─────────────────────────────────────────── */
 .aic-labels {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 0 1px;
+  box-sizing: border-box;
 }
 
 .aic-label {
   font-family: 'MyFont', sans-serif;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.65);
   text-align: center;
   flex: 1;
+  text-transform: lowercase;
 }
 
-.aic-bar {
+/* ─── Bar track (position context for marker) ───────────────── */
+.aic-bar-track {
   position: relative;
   width: 100%;
-  height: 12px;
-  border-radius: 6px;
-  background: linear-gradient(to right, #4ade80, #facc15, #f97316, #ef4444);
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Solid gradient bar ─────────────────────────────────────── */
+.aic-bar {
+  width: 100%;
+  height: 20px;
+  border-radius: 7px;
+  /* matches screenshot: green → yellow → orange → red */
+  background: linear-gradient(
+    to right,
+    #3ecf6a 0%,
+    #a8d84e 16.6%,
+    #f5c842 33.3%,
+    #f59b2b 50%,
+    #f06030 66.6%,
+    #e03030 83.3%,
+    #c01818 100%
+  );
+}
+
+/* ─── Score marker ───────────────────────────────────────────── */
+.aic-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 22px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+/* ─── Bottom number row ──────────────────────────────────────── */
+.aic-numbers {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
   padding: 0 1px;
   box-sizing: border-box;
 }
 
-.aic-tick {
-  width: 2px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 1px;
-  flex-shrink: 0;
+.aic-number {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  flex: 1;
 }
