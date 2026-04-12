@@ -301,13 +301,13 @@ h1 {
 
 .team-names {
   width: 100%;
-  aspect-ratio: 1 / 1.05; /* Forces the box to be twice as wide as it is high */
+  aspect-ratio: 1 / 1.05;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* Set a solid black background color  */
+  /* solid black background color  */
   background: #1a1a1a !important; 
 
   /* Remove the transparency blur effect */
@@ -350,6 +350,6 @@ h1 {
 /* Responsive adjustment for smaller screens */
 @media (max-width: 768px) {
   .images {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
