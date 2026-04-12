@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  aspect-ratio: 1440 / 2000; 
+  /* aspect-ratio: 1440 / 2000;  */
   display: flex;
   align-items: flex-start;  
   justify-content: flex-start;
@@ -24,13 +24,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to bottom,
     rgba(0,0,0,0) 30%,
     rgba(0,0,0,0) 50%,
     rgba(0,0,0,0) 70%,
     #0C0C0A 100%
-  );
+  ); */
   pointer-events: none;
   z-index: 1;
 }
@@ -204,6 +204,70 @@
              /* stretches the top button to full container width */
 }
 
+.LearnMore {
+  width: 50%;
+  margin-top: 30px;
+
+  cursor: pointer;
+  border-radius: 6px;             /* rounded corners */
+  transition: all 0.2s ease;      /* smooth hover effect */
+
+ 
+  /* Force transparency and strip defaults */
+  background: #975328b9  !important; 
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* The blur only works if there's something BEHIND the button */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+
+  /* Border & Text */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  
+  /* Ensure no shadow is adding white "bulk" */
+  box-shadow: none !important;
+}
+
+.resource-buttons {
+  width: 150px;
+  margin-top: 30px;
+  justify-content: space-around;
+
+  cursor: pointer;
+  border-radius: 6px;             /* rounded corners */
+  transition: all 0.2s ease;      /* smooth hover effect */
+
+  /* Force transparency and strip defaults */
+  background: #975328b9  !important; 
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* The blur only works if there's something BEHIND the button */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+
+  /* Border & Text */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  
+  /* Ensure no shadow is adding white "bulk" */
+  box-shadow: none !important;
+}
+
+.resources {
+  display: flex;
+  gap: 50px;
+  width: 100%; 
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
 .hStack {
   display: flex;                   /* space between the horizontal buttons */
   gap: 20px;                       /* spacing between buttons */
@@ -221,8 +285,71 @@
 
 h1 {
   margin: 10px;
+  margin-bottom: 10px;
 }
 
 .bottom-textboxes {
   width: 100%;
+}
+
+.team-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 375px;
+}
+
+.team-names {
+  width: 100%;
+  aspect-ratio: 1 / 1.05; /* Forces the box to be twice as wide as it is high */
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Set a solid black background color  */
+  background: #1a1a1a !important; 
+
+  /* Remove the transparency blur effect */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  transition: transform 0.3s ease;
+}
+
+.team-names:hover {
+  transform: scale(1.02);
+}
+
+.images {
+  display: grid;
+  padding-top: 40px;
+  padding-bottom: 100px;
+  /* Creates 3 equal columns */
+  grid-template-columns: repeat(3, 1fr);
+  /* Creates 2 rows */
+  grid-template-rows: repeat(2, auto);
+  gap: 40px;
+  width: 100%;
+}
+
+.images img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Keeps images uniform */
+  object-fit: cover;    /* Prevents stretching */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.images img:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .images {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
 }

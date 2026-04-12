@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import TextBox from './components/textBox.js';
-import femalecd from './assets/femalecd.png';
+import ucla from "./assets/ucla.png";
 
 
 const Home: React.FC = () => {
@@ -13,8 +13,8 @@ allowing vehicle safety designs to better account for women’s injury risk with
   50th-percentile male and 5th-percentile female dummies. As a result, vehicles remain largely untested for the average \
   woman’s body geometry, biomechanics, and injury risk. ";
 
-  const pd_text = "Our platform leverages cutting-edge bioengineering tools to develop wearable sensors \
-that monitor physiological signals in real time, ensuring accurate and personalized health insights across diverse users.";
+//   const pd_text = "Our platform leverages cutting-edge bioengineering tools to develop wearable sensors \
+// that monitor physiological signals in real time, ensuring accurate and personalized health insights across diverse users.";
 
 
   return (
@@ -57,20 +57,64 @@ that monitor physiological signals in real time, ensuring accurate and personali
           </div>
 
           <div className="description-block">
-            <h1 style={{textAlign: "right"}}>Impact</h1>
-            <TextBox
-              text={impact_text}
-              className="bottom-textboxes"
-            />
+            <h1>Impact</h1>
+            <div style={{display:"flex", flexDirection:"row", gap:"20%"}}>
+              <TextBox
+                text={impact_text}
+                className="bottom-textboxes"
+                style={{width:"50%"}}
+              />
+              <img src={ucla} style={{width:"40%", height:"auto", alignItems:"right"}}/>
+            </div>
           </div>
           
           <div className="description-block">
-            <h1>Product Description</h1>
-            <TextBox
-              text={`dummy go crash. ${pd_text}`}
-              className="bottom-textboxes"
-            />
+            <h1>Teams</h1>
+
+            <div className="hStack">
+              <div className="team-stack">
+                <TextBox
+                  title="Electrical"
+                  className="team-names"
+                />
+                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+              </div>
+
+              <div className="team-stack">
+                <TextBox
+                  title="Mechanical"
+                  className="team-names"
+                />
+                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+              </div>
+
+              <div className="team-stack">
+                <TextBox
+                  title="Software"
+                  className="team-names"
+                />
+                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+              </div>
+            </div>
           </div>
+
+          <div className="description-block">
+            <div className="images">
+              <img src={ucla} />
+              <img src={ucla} />
+              <img src={ucla} />
+              <img src={ucla} />
+              <img src={ucla} />
+              <img src={ucla} />
+            </div>
+          </div>
+
+          <div className="resources">  
+            <button className="resource-buttons" onClick={() => {}}>slides</button>
+            <button className="resource-buttons" onClick={() => {}}>resources</button>
+            <button className="resource-buttons" onClick={() => {}}>figma</button>
+          </div>
+
         </div>
 </div>
   
