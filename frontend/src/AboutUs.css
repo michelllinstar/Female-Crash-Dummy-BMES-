@@ -89,7 +89,7 @@
 }
 
 .rd-value-spacer {
- min-height: 128px;
+ min-height: 48px;
  flex-shrink: 0;
 }
 .v-stack{
