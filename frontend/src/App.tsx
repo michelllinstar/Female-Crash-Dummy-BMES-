@@ -17,10 +17,10 @@ function App() {
     <div className="app-container">
       {/* ← removed the <div className="App"> wrapper */}
       <Header title="Female Crash Dummy Website" links={[
-        { label: "About Us", path: "/about_us" },
-        { label: "Simulator", path: "/simulator" },
-        { label: "Real Data", path: "/real_data" },
         { label: "Info", path: "/info" },
+        { label: "Real Data", path: "/real_data" },
+        { label: "Simulator", path: "/simulator" },
+        { label: "About Us", path: "/about_us" }
       ]} />
 
       <div className="page-content">

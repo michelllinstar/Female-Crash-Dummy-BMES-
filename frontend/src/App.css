@@ -60,7 +60,7 @@ body {
   flex: 1;                  /* stretches to push footer down */
   display: flex;
   flex-direction: column;
-  padding-top: 80px;
+  /* padding-top: 58px; */
 }
 
 /* Routes stretch to content height */

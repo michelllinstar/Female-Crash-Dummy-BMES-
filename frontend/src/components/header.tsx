@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import Home from '../Home.js';
 import "./header.css";
+import logo from '../assets/logo.png';
 
 export interface NavItem {
     label: string;
@@ -18,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title, links }) => {
             <div className="logo">
                 {/* Wrap your logo/image in a NavLink pointing to "/" */}
                 <NavLink to="/">
-                    <img src="" alt="logo" />
+                    <img src={logo} alt="logo" style={{ maxWidth: '36px', height: 'auto' }} />
                 </NavLink>
             </div>
         

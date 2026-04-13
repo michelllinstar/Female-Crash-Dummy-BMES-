@@ -2,6 +2,7 @@
 header {
     width: 1440px;
     height: 58px;
+    margin: 0 auto;
 
     color: #fff;            /* text color */
     display: flex;
@@ -12,16 +13,60 @@ header {
      /* fully transparent background */
    background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 255, 255, 0.05)
+    rgba(255, 255, 255, 0.10),
+    rgba(255, 255, 255, 0.05)),
+    radial-gradient(
+    circle at top,
+    #17291B 0%,
+    #17291B 10%,
+    #060404 40%,
+    #060404 100%
   );
+
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+header > * {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+/* Target the div containing the logo */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Take up the full 58px of the header */
+}
+
+/* Target the NavLink (anchor tag) specifically */
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure the image behaves */
+.logo img {
+    display: block; /* Removes the bottom whitespace gap */
+    /* Your inline styles in React handle the width/height */
+}
+.nav-NavLinks ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Centers the list items vertically */
+    gap: 20px;           /* Cleaner way to space out links than margins */
+}
+
+.nav-NavLinks li {
+    display: flex;
+    align-items: center;
 }
