@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0 px;
-  padding: 50px 100px 100px 100px;
+  padding: 140px 100px 100px 100px;
   background: transparent;
   color: white;
   font-family: 'MyFont', sans-serif;
@@ -22,7 +22,7 @@
   width: calc(100% - 200px);
   max-width: 1200px;
   height: auto;
-  max-height: 80vh;
+  max-height: 75vh;
   box-sizing: border-box;
   background: transparent;
   margin: 0 auto;

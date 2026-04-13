@@ -49,6 +49,16 @@ border-radius: 20px;
   overflow: hidden;          /* hide overflowing text */
   text-align: center;
 }
+/* Specifically for the cursor follower */
+.product-statement.follower {
+  background: rgba(12, 12, 10, 0.8); /* Darker background to pop against images */
+  border: 1px solid rgba(0, 255, 127, 0.3); /* Subtle green border to match your glow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Lift it off the page */
+  
+  /* Ensure it ignores all mouse interactions */
+  pointer-events: none !important; 
+  user-select: none;
+}
 
 /* Title styling */
 .statement-title {
@@ -64,10 +74,11 @@ border-radius: 20px;
 /* Paragraph styling */
 .statement-description {
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.5;
     /* prevent highlight/halo behind text */
   background: transparent;
+  padding: 10px 10px 10px 10px;
   -webkit-text-fill-color: white;
   font-family: 'MyFont', sans-serif;
 }

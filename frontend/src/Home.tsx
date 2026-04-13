@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import TextBox from './components/textBox.js';
 import ucla from "./assets/ucla.png";
 
 
 const Home: React.FC = () => {
+
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const limit = 20; // The max distance in pixels
+
+  useEffect(() => {
+  const handleMouseMove = (e: MouseEvent) => {
+  // 1. Calculate the anchor position based on your requirements:
+  // 20% from the left
+  const homeX = window.innerWidth * 0.2; 
+  // 30% from the bottom = 70% from the top
+  const homeY = window.innerHeight * 0.7; 
+
+  // 2. Calculate raw distance from this specific anchor
+  const diffX = e.clientX - homeX;
+  const diffY = e.clientY - homeY;
+
+  // 3. Clamp the movement between -100 and 100
+  const constrainedX = Math.max(-limit, Math.min(limit, diffX));
+  const constrainedY = Math.max(-limit, Math.min(limit, diffY));
+
+  setMouseOffset({ x: constrainedX, y: constrainedY });
+};
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+    
   const impact_text = "Our crash test dummy addresses this gap by accurately representing female body geometry \
 and biomechanics using low-cost, accessible materials. This makes inclusive testing more affordable and scalable, \
 allowing vehicle safety designs to better account for women’s injury risk without the high cost of traditional crash test models.";
@@ -22,19 +49,29 @@ allowing vehicle safety designs to better account for women’s injury risk with
 <div className="vstack">
   <div className="hero-content">
             <div className="vstack">
-              <div className="hero-text">
-                FEMALE CRASH DUMMY SIMULATOR
-              </div>
+                  <div className="hero-text">
+                    FEMALE CRASH DUMMY SIMULATOR
+                  </div>
+
                   <div className="hero-textboxes">  
                     <TextBox
                         text={`The Female Crash dummy simulator is a blah blah blah; placeholder text`}
-                        style={{ width: '598px', height: '430px' }}
+                        style={{ width: '598px', height: '370px' }}
                     />
-                    <TextBox
+                    <TextBox 
+                        isFollower={true}
                         text={`Our Mission: We aim to develop a low-cost female crash 
                           test dummy modeled after a 50th percentile woman to address 
                           the gender gaps in vehicle safety testing. `}
-                          style={{ width: '350px', height: '148px' }}
+                          style={{
+          position: "fixed",
+          left: "20%",
+          top: "70%",
+          // Combine the 'center' fix with the mouse offset
+          transform: `translate(calc(-50% + ${mouseOffset.x}px), calc(-50% + ${mouseOffset.y}px))`,
+          width: "150px",
+          height: "100px",
+        }}
                     />
                   </div>
               </div>
