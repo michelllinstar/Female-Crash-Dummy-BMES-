@@ -1,35 +1,99 @@
 import React, { useState } from "react";
 import "./SimulateUI.css";
 
+interface UserInput {
+  head_circumference: string;
+  height: string;
+  sitting_height: string;
+  weight: string;
+  angle: string;
+  speed: string;
+}
+
 const SimulateUI: React.FC = () => {
-  const [inputs, setInputs] = useState<string[]>(Array(7).fill(""));
+  const [inputs, setInputs] = useState<UserInput>({
+    head_circumference: "",
+    height: "",
+    sitting_height: "",
+    weight: "",
+    angle: "",
+    speed: "",
+  });
+  
   const [currentStep, setCurrentStep] = useState<number>(1);
 
-  const handleChange = (index: number, value: string) => {
-    const newInputs = [...inputs];
-    newInputs[index] = value;
-    setInputs(newInputs);
-    // Update step based on which input is being filled
-    if (index < 4) {
-      setCurrentStep(1);
-    } else {
-      setCurrentStep(2);
-    }
+  // const handleChange = (index: number, value: string) => {
+  //   const newInputs = [...inputs];
+  //   newInputs[index] = value;
+  //   setInputs(newInputs);
+  //   // Update step based on which input is being filled
+  //   if (index < 4) {
+  //     setCurrentStep(1);
+  //   } else {
+  //     setCurrentStep(2);
+  //   }
+  // };
+
+  const handleChange = (name: keyof UserInput, value: string) => {
+    setInputs((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // logic for the progress bar
+    const step1Fields: (keyof UserInput)[] = ["head_circumference", "height", "sitting_height", "weight"];
+    setCurrentStep(step1Fields.includes(name) ? 1 : 2);
   };
 
-  const handleSimulate = () => {
+  const handleSimulate = async (e: { preventDefault: () => void; }) => {
     console.log("Simulate clicked with inputs:", inputs);
+
+    e.preventDefault(); // Prevent page reload
+
+    // const payload = {
+    //   head_circumference: parseFloat(inputs),
+    //   height: parseFloat(inputs),
+    //   sitting_height: parseFloat(inputs),
+    //   weight: parseFloat(inputs),
+    //   angle: parseFloat(inputs),
+    //   speed: parseFloat(inputs) // Note: your index was 6 for speed
+    // };
+
+    const payload = Object.fromEntries(
+      Object.entries(inputs).map(([key, val]) => [key, parseFloat(val) || 0])
+    );
+    
+    try {
+      const response = await fetch('http://127.0.0.1:8000/simulate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert("Simulation Successful!");
+        console.log(result);
+      } else {
+        console.error("Backend returned an error:", response.status);
+      }
+    } catch (error) {
+      // if the backend is not running or CORS is blocked
+      console.error("Network error - is your backend running?", error);
+    }
   };
 
   const rows = [
     { label: "Please Enter Your Information: ", divider: true },
-    { staticLabel: "Head Circumference (cm)", index: 0 },
-    { staticLabel: "Height (cm)", index: 1 },
-    { staticLabel: "Sitting Height (cm)", index: 2 },
-    { staticLabel: "Weight (kg)", index: 3 },
+    { staticLabel: "Head Circumference (cm)", key: "head_circumference" },
+    { staticLabel: "Height (cm)", key: "height" },
+    { staticLabel: "Sitting Height (cm)", key: "sitting_height" },
+    { staticLabel: "Weight (kg)", key: "weight" },
     { label: "Type of Crash: ", divider: true },
-    { staticLabel: "Angle (degrees)", index: 4 },
-    { staticLabel: "Closing Speed (km/h)", index: 6 },
+    { staticLabel: "Angle (degrees)", key: "angle" },
+    { staticLabel: "Closing Speed (km/h)", key: "speed" },
   ];
 
   return (
@@ -60,8 +124,8 @@ const SimulateUI: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Enter value"
-                    value={inputs[row.index!]}
-                    onChange={(e) => handleChange(row.index!, e.target.value)}
+                    value={inputs[row.index as keyof UserInput]}
+                    onChange={(e) => handleChange(row.index as keyof UserInput, e.target.value)}
                     className="simulate-input"
                   />
                 </div>
@@ -70,7 +134,7 @@ const SimulateUI: React.FC = () => {
           </div>
         ))}
       </div>
-      <button className="simulate-button" onClick={handleSimulate}>
+      <button className="simulate-button" onClick={(e) => handleSimulate(e)}>
         Simulate
       </button>
     </div>
