@@ -22,18 +22,6 @@ const SimulateUI: React.FC = () => {
   
   const [currentStep, setCurrentStep] = useState<number>(1);
 
-  // const handleChange = (index: number, value: string) => {
-  //   const newInputs = [...inputs];
-  //   newInputs[index] = value;
-  //   setInputs(newInputs);
-  //   // Update step based on which input is being filled
-  //   if (index < 4) {
-  //     setCurrentStep(1);
-  //   } else {
-  //     setCurrentStep(2);
-  //   }
-  // };
-
   const handleChange = (name: keyof UserInput, value: string) => {
     setInputs((prev) => ({
       ...prev,
@@ -49,15 +37,6 @@ const SimulateUI: React.FC = () => {
     console.log("Simulate clicked with inputs:", inputs);
 
     e.preventDefault(); // Prevent page reload
-
-    // const payload = {
-    //   head_circumference: parseFloat(inputs),
-    //   height: parseFloat(inputs),
-    //   sitting_height: parseFloat(inputs),
-    //   weight: parseFloat(inputs),
-    //   angle: parseFloat(inputs),
-    //   speed: parseFloat(inputs) // Note: your index was 6 for speed
-    // };
 
     const payload = Object.fromEntries(
       Object.entries(inputs).map(([key, val]) => [key, parseFloat(val) || 0])
@@ -115,7 +94,7 @@ const SimulateUI: React.FC = () => {
                 <span>{row.label}</span>
               </div>
             )}
-            {!row.divider && 'index' in row && (
+            {!row.divider && 'key' in row && (
               <div className="simulate-row">
                 <div className="simulate-col">
                   <div className="simulate-label">{row.staticLabel}</div>
@@ -124,8 +103,8 @@ const SimulateUI: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Enter value"
-                    value={inputs[row.index as keyof UserInput]}
-                    onChange={(e) => handleChange(row.index as keyof UserInput, e.target.value)}
+                    value={inputs[row.key as keyof UserInput]}
+                    onChange={(e) => handleChange(row.key as keyof UserInput, e.target.value)}
                     className="simulate-input"
                   />
                 </div>
