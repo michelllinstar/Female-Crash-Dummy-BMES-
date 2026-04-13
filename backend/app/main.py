@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from simulator import predict_hic, hic_to_ais
 
 app = FastAPI()
 
@@ -12,12 +14,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class UserInput(BaseModel):
+    head_circumference: float
+    height: float
+    sitting_height: float
+    weight: float
+    angle: float
+    speed: float
+
 @app.get("/")
 def read_root():
     return {"message": "Backend is running!"}
 
 @app.get("/simulate")
-def simulate(speed: float = 60, angle: float = 0):
-    # Simple fake result
-    injury_score = round(0.01 * speed + 0.001 * abs(angle), 3)
-    return {"speed": speed, "angle": angle, "injury_score": injury_score}
+async def simulate(data: UserInput):
+    metrics = predict_hic(
+        angle=data.angle,
+        speed=data.speed,
+        weight=data.weight,
+        height=data.height,
+        sit=data.sitting_height,
+        headc=data.head_circumference
+    )
+
+    return metrics
