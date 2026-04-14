@@ -27,7 +27,7 @@ The project includes a FastAPI backend for simulations and a React frontend for 
 ---
 
 ## Tech Stack
-- **Frontend:** React, Vite, JavaScript  
+- **Frontend:** React, Vite, JavaScript (typescript+CSS)  
 - **Backend:** FastAPI, Python 3.11  
 - **Containerization:** Docker, Docker Compose  
 - **Database (optional):** SQLite or PostgreSQL  
