@@ -6,22 +6,22 @@ import meow from './assets/kitty2.png';
 
 const AboutUs: React.FC = () => {
   const teamData = [
-    { name: 'Ellie Lin', year: 'Founder & CEO', major: 'Computer Science', imageUrl: meow },
-    { name: 'Ellen Zulkarnain', year: 'Lead Developer', major: 'Software Engineering', imageUrl: meow },
+    { name: 'Ellie Lin', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Ellen Zulkarnain', year: '3rd Year', major: 'Mechanical Engineering', imageUrl: meow },
 
-    { name: 'Kevin', year: 'Designer', major: 'Graphic Design', imageUrl: meow },
-    { name: 'Justine', year: 'Marketing', major: 'Business Administration', imageUrl: meow },
-    { name: 'Will', year: 'Data Scientist', major: 'Data Science', imageUrl: meow },
-    { name: 'Nikita', year: 'Product Manager', major: 'Product Management', imageUrl: meow },
+    { name: 'Kevin Liu', year: '3rd Year', major: 'Electrical Engineering', imageUrl: meow },
+    { name: 'Justine Lin', year: '2nd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Will Zheng', year: '2nd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Nikita Senthil', year: '3rd Year', major: 'Computer Engineering', imageUrl: meow },
 
-    { name: 'Miriam', year: 'QA Engineer', major: 'Software Testing', imageUrl: meow },
-    { name: 'Madeline', year: 'HR Manager', major: 'Human Resources', imageUrl: meow },
-    { name: 'Andrew', year: 'DevOps Engineer', major: 'Cloud Computing', imageUrl: meow },
-    { name: 'Amanda Martinez', year: 'Customer Support', major: 'Communications', imageUrl: meow }, 
+    { name: 'Miriam Pomerantev', year: '2nd Year', major: 'Mechanial Engineering', imageUrl: meow },
+    { name: 'Madeline Tsoi', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Andrew Cardoza', year: '3rd Year', major: 'Mechanical Engineering', imageUrl: meow },
+    { name: 'Celine Oh', year: '4th Year', major: 'Mechanical Engineering', imageUrl: meow }, 
 
-    { name: 'Michelle Lin', year: 'Intern', major: 'Computer Science', imageUrl: meow },
-    { name: 'Priya Ravi', year: 'Intern', major: 'Software Engineering', imageUrl: meow },
-    { name: 'Shreeya Sharma', year: 'Intern', major: 'Graphic Design', imageUrl: meow }
+    { name: 'Michelle Lin', year: '2nd Year', major: 'Computer Science', imageUrl: meow },
+    { name: 'Priya Ravi', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Shreeya Sharma', year: '1st Year', major: 'Computer Science', imageUrl: meow }
   ];
 
   const group1 = teamData.slice(0, 2);
