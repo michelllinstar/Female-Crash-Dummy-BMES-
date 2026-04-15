@@ -26,7 +26,7 @@ class UserInput(BaseModel):
 def read_root():
     return {"message": "Backend is running!"}
 
-@app.get("/simulate")
+@app.post("/simulate")
 async def simulate(data: UserInput):
     metrics = predict_hic(
         angle=data.angle,
