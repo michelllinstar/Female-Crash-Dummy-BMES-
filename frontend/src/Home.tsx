@@ -5,28 +5,27 @@ import ucla from "./assets/ucla.png";
 
 
 const Home: React.FC = () => {
-
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const limit = 20; // The max distance in pixels
+  const [isVisible, setIsVisible] = useState(false); // Visibility toggle
+  const limit = 20;
 
   useEffect(() => {
-  const handleMouseMove = (e: MouseEvent) => {
-  // 1. Calculate the anchor position based on your requirements:
-  // 20% from the left
-  const homeX = window.innerWidth * 0.2; 
-  // 30% from the bottom = 70% from the top
-  const homeY = window.innerHeight * 0.7; 
+    const handleMouseMove = (e: MouseEvent) => {
+      const homeX = window.innerWidth * 0.2; 
+      const homeY = window.innerHeight * 0.7; 
 
-  // 2. Calculate raw distance from this specific anchor
-  const diffX = e.clientX - homeX;
-  const diffY = e.clientY - homeY;
+      const diffX = e.clientX - homeX;
+      const diffY = e.clientY - homeY;
 
-  // 3. Clamp the movement between -100 and 100
-  const constrainedX = Math.max(-limit, Math.min(limit, diffX));
-  const constrainedY = Math.max(-limit, Math.min(limit, diffY));
+      // OPTION: Only show if the mouse is within 300px of the anchor
+      const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+      setIsVisible(distance < 300); 
 
-  setMouseOffset({ x: constrainedX, y: constrainedY });
-};
+      const constrainedX = Math.max(-limit, Math.min(limit, diffX));
+      const constrainedY = Math.max(-limit, Math.min(limit, diffY));
+
+      setMouseOffset({ x: constrainedX, y: constrainedY });
+    };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -64,11 +63,8 @@ allowing vehicle safety designs to better account for women’s injury risk with
                           test dummy modeled after a 50th percentile woman to address 
                           the gender gaps in vehicle safety testing. `}
                           style={{
-          position: "fixed",
-          left: "20%",
-          top: "70%",
-          // Combine the 'center' fix with the mouse offset
-          transform: `translate(calc(-50% + ${mouseOffset.x}px), calc(-50% + ${mouseOffset.y}px))`,
+          
+        
           width: "150px",
           height: "100px",
         }}
