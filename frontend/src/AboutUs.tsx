@@ -15,7 +15,7 @@ const AboutUs: React.FC = () => {
     { name: 'Nikita Senthil', year: '3rd Year', major: 'Computer Engineering', imageUrl: meow },
 
     { name: 'Miriam Pomerantev', year: '2nd Year', major: 'Mechanial Engineering', imageUrl: meow },
-    { name: 'Madeline Tsoi', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
+    { name: 'Madeleine Tsoi', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
     { name: 'Andrew Cardoza', year: '3rd Year', major: 'Mechanical Engineering', imageUrl: meow },
     { name: 'Celine Oh', year: '4th Year', major: 'Mechanical Engineering', imageUrl: meow }, 
 
