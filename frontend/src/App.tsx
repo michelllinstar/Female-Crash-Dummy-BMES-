@@ -10,6 +10,8 @@ import Home from "./Home.js";
 import AboutUs from "./AboutUs.js";
 import Simulator from "./Simulator.js";
 import RealData from "./RealData.js";
+import SimulateUI from "./components/SimulateUI.js";
+import SimulateResults from "./SimulateResults.js";
 
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
             <Route path="/simulator" element={<Simulator />} />
             <Route path="/real_data" element={<RealData />} />
             <Route path="/about_us" element={<AboutUs />} />
+            <Route path="/simulate" element={<SimulateUI />} />
+          <Route path="/simulateresults" element={<SimulateResults />} />
           </Routes>
         </div>
       </div>

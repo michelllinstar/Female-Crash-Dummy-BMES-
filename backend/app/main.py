@@ -7,7 +7,7 @@ app = FastAPI()
 
 # Allow frontend to talk to backend
 app.add_middleware(
-    CORSMiddleware,
+    CORSMiddleware, #https
     allow_origins=["*"],  # for testing, make specific later
     allow_credentials=True,
     allow_methods=["*"],

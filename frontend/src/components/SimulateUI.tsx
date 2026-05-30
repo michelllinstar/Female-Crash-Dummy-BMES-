@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SimulateUI.css";
+import { useNavigate } from "react-router-dom";
+
 
 interface UserInput {
   head_circumference: string;
@@ -11,6 +13,7 @@ interface UserInput {
 }
 
 const SimulateUI: React.FC = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState<UserInput>({
     head_circumference: "",
     height: "",
@@ -53,7 +56,7 @@ const SimulateUI: React.FC = () => {
 
       if (response.ok) {
         const result = await response.json();
-        alert("Simulation Successful!");
+        navigate("/simulateresults", { state: { result } });
         console.log(result);
       } else {
         console.error("Backend returned an error:", response.status);
