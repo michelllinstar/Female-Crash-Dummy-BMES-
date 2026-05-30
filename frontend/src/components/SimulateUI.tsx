@@ -25,6 +25,10 @@ const SimulateUI: React.FC = () => {
   
   const [currentStep, setCurrentStep] = useState<number>(1);
 
+  // NEW: State for popup visibility and storing the result data
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [simulationResult, setSimulationResult] = useState<any>(null);
+
   const handleChange = (name: keyof UserInput, value: string) => {
     setInputs((prev) => ({
       ...prev,
@@ -36,8 +40,9 @@ const SimulateUI: React.FC = () => {
     setCurrentStep(step1Fields.includes(name) ? 1 : 2);
   };
 
-  const handleSimulate = async (e: { preventDefault: () => void; }) => {
+  const handleSimulate = async (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("Simulate clicked with inputs:", inputs);
+    setSimulationResult(null); 
 
     e.preventDefault(); // Prevent page reload
 
@@ -56,15 +61,21 @@ const SimulateUI: React.FC = () => {
 
       if (response.ok) {
         const result = await response.json();
-        navigate("/simulateresults", { state: { result } });
-        console.log(result);
+        setSimulationResult(result);
+        setIsPopupOpen(true);
+        console.log("New Result:", result);
+        // navigate("/simulateresults", { state: { result } });
       } else {
         console.error("Backend returned an error:", response.status);
       }
     } catch (error) {
-      // if the backend is not running or CORS is blocked
       console.error("Network error - is your backend running?", error);
     }
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setSimulationResult(null);
   };
 
   const rows = [
@@ -79,6 +90,7 @@ const SimulateUI: React.FC = () => {
   ];
 
   return (
+    <>
     <div className="simulate-ui-container">
       <div className="progress-indicator">
         <div className={`progress-step ${currentStep === 1 ? 'active' : ''}`}>
@@ -120,6 +132,44 @@ const SimulateUI: React.FC = () => {
         Simulate
       </button>
     </div>
+
+    {/* NEW: The Popup Modal */}
+      {isPopupOpen && (
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Simulation Results</h2>
+            
+            <div className="results-display">
+              {typeof simulationResult === 'object' && simulationResult !== null ? (
+                <div className="formatted-results">
+                  {Object.entries(simulationResult).map(([key, value]) => {
+                    // Formats keys like "impact_force" to "Impact Force"
+                    const formattedKey = key
+                      .split('_')
+                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(' ');
+
+                    return (
+                      <div className="result-item" key={key}>
+                        <span className="result-label">{formattedKey}</span>
+                        <span className="result-value">{String(value)}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                // Fallback just in case the backend sends a plain string instead of JSON
+                <p className="fallback-text">{String(simulationResult)}</p>
+              )}
+            </div>
+
+            <button onClick={closePopup} className="btn-close">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
