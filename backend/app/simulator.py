@@ -27,29 +27,28 @@ def predict_hic(angle, speed, weight, height, sit, headc):
     log_pred = model.predict(x)[0]
 
     hic = np.expm1(log_pred)
-    ais, description = hic_to_ais(hic)
+    ais = hic_to_ais(hic)
 
     return {
         "HIC": float(hic),
-        "AIS": int(ais),
-        "Severity": str(description)
+        "AIS": int(ais)
     }
 
 def hic_to_ais(hic):
     if hic < 100:
-        return 0, "Uninjured"
+        return 0
     elif hic < 250:
-        return 1, "Minor"
+        return 1
     elif hic < 500:
-        return 2, "Moderate"
+        return 2
     elif hic < 700:
-        return 3, "Serious, not life-threatening"
+        return 3
     elif hic < 1000:
-        return 4, "Severe, life-threatening, survival probable"
+        return 4
     elif hic < 1500:
-        return 5, "Critical, survival uncertain"
+        return 5
     else:
-        return 6, "Maximum, lethal"
+        return 6
 
 # Test locally
 if __name__ == "__main__":
