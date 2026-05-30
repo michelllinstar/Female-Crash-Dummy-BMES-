@@ -40,8 +40,9 @@ const SimulateUI: React.FC = () => {
     setCurrentStep(step1Fields.includes(name) ? 1 : 2);
   };
 
-  const handleSimulate = async (e: { preventDefault: () => void; }) => {
+  const handleSimulate = async (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("Simulate clicked with inputs:", inputs);
+    setSimulationResult(null); 
 
     e.preventDefault(); // Prevent page reload
 
@@ -60,22 +61,21 @@ const SimulateUI: React.FC = () => {
 
       if (response.ok) {
         const result = await response.json();
-        // alert("Simulation Successful!\n\n== Results ==\n" + result);
         setSimulationResult(result);
         setIsPopupOpen(true);
-        console.log("Result:", result);
+        console.log("New Result:", result);
         // navigate("/simulateresults", { state: { result } });
       } else {
         console.error("Backend returned an error:", response.status);
       }
     } catch (error) {
-      // if the backend is not running or CORS is blocked
       console.error("Network error - is your backend running?", error);
     }
   };
 
   const closePopup = () => {
     setIsPopupOpen(false);
+    setSimulationResult(null);
   };
 
   const rows = [
