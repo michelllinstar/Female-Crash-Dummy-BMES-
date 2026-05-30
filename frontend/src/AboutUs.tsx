@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import TeamMember from './components/TeamMember.jsx';
 import './AboutUs.css';
 import Button from './components/button.js';
 import meow from './assets/kitty2.png';
 
 const AboutUs: React.FC = () => {
+  const navigate = useNavigate();
   const teamData = [
     { name: 'Ellie Lin', year: '3rd Year', major: 'Bioengineering', imageUrl: meow },
     { name: 'Ellen Zulkarnain', year: '3rd Year', major: 'Mechanical Engineering', imageUrl: meow },
@@ -58,7 +60,7 @@ const AboutUs: React.FC = () => {
           <div className="sec-tit">Electrical Team</div>
           <div className="elec-grid">{renderGroup(group2)}</div>
           <div className="rd-value-spacer" />
-                <Button className="rd-learn-more">LEARN MORE</Button>
+                <Button className="rd-learn-more" onClick={() => navigate("/team/electrical")}>LEARN MORE</Button>
 
         </div>
 
@@ -66,7 +68,7 @@ const AboutUs: React.FC = () => {
             <div className="sec-tit">Mechanical Team</div>
             <div className="mech-grid">{renderGroup(group3)}</div>
             <div className="rd-value-spacer" />
-                <Button className="rd-learn-more">LEARN MORE</Button>
+                <Button className="rd-learn-more" onClick={() => navigate("/team/mechanical")}>LEARN MORE</Button>
            
       </div>
 
@@ -74,7 +76,7 @@ const AboutUs: React.FC = () => {
           <div className="sec-tit">Software Team</div>
           <div className="soft-grid">{renderGroup(group4)}</div>
            <div className="rd-value-spacer" />
-                <Button className="rd-learn-more">LEARN MORE</Button>
+                <Button className="rd-learn-more" onClick={() => navigate("/team/software")}>LEARN MORE</Button>
            </div>
        
         </div>

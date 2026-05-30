@@ -49,14 +49,13 @@ border-radius: 20px;
   overflow: hidden;          /* hide overflowing text */
   text-align: center;
 }
-/* Specifically for the cursor follower */
+/* Specifically for the cursor follower — inherits the glass style of .product-statement */
 .product-statement.follower {
-  background: rgba(12, 12, 10, 0.8); /* Darker background to pop against images */
-  border: 1px solid rgba(0, 255, 127, 0.3); /* Subtle green border to match your glow */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Lift it off the page */
-  
+  /* Smoothly trail the cursor */
+  transition: top 0.18s ease-out, left 0.18s ease-out;
+
   /* Ensure it ignores all mouse interactions */
-  pointer-events: none !important; 
+  pointer-events: none !important;
   user-select: none;
 }
 

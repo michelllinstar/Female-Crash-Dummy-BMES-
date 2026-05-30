@@ -12,6 +12,9 @@ import Simulator from "./Simulator.js";
 import RealData from "./RealData.js";
 import SimulateUI from "./components/SimulateUI.js";
 import SimulateResults from "./SimulateResults.js";
+import ElectricalTeam from "./ElectricalTeam.js";
+import MechanicalTeam from "./MechanicalTeam.js";
+import SoftwareTeam from "./SoftwareTeam.js";
 
 
 function App() {
@@ -35,6 +38,9 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/simulate" element={<SimulateUI />} />
           <Route path="/simulateresults" element={<SimulateResults />} />
+            <Route path="/team/electrical" element={<ElectricalTeam />} />
+            <Route path="/team/mechanical" element={<MechanicalTeam />} />
+            <Route path="/team/software" element={<SoftwareTeam />} />
           </Routes>
         </div>
       </div>

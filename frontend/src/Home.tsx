@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import TextBox from './components/textBox.js';
 import ucla from "./assets/ucla.png";
 
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false); // Visibility toggle
-  const limit = 20;
+  const limit = 15; // max px the follower drifts from its anchor
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const homeX = window.innerWidth * 0.2; 
-      const homeY = window.innerHeight * 0.7; 
-
-      const diffX = e.clientX - homeX;
-      const diffY = e.clientY - homeY;
-
-      // OPTION: Only show if the mouse is within 300px of the anchor
-      const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-      setIsVisible(distance < 300); 
-
-      const constrainedX = Math.max(-limit, Math.min(limit, diffX));
-      const constrainedY = Math.max(-limit, Math.min(limit, diffY));
-
-      setMouseOffset({ x: constrainedX, y: constrainedY });
+      const anchorX = window.innerWidth / 2;
+      const anchorY = window.innerHeight / 2;
+      const diffX = e.clientX - anchorX;
+      const diffY = e.clientY - anchorY;
+      const norm = Math.sqrt(diffX * diffX + diffY * diffY) || 1;
+      setMouseOffset({
+        x: (diffX / norm) * limit,
+        y: (diffY / norm) * limit,
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -51,23 +47,22 @@ allowing vehicle safety designs to better account for women’s injury risk with
                   <div className="hero-text">
                     FEMALE CRASH DUMMY SIMULATOR
                   </div>
+                  <div className="hero-subtitle">
+                    Building a low-cost, inclusive crash test dummy to close the gender gap in vehicle safety.
+                  </div>
 
                   <div className="hero-textboxes">  
                     <TextBox
                         text={`The Female Crash dummy simulator is a blah blah blah; placeholder text`}
                         style={{ width: '598px', height: '370px' }}
                     />
-                    <TextBox 
-                        isFollower={true}
-                        text={`Our Mission: We aim to develop a low-cost female crash 
-                          test dummy modeled after a 50th percentile woman to address 
-                          the gender gaps in vehicle safety testing. `}
-                          style={{
-          
-        
-          width: "150px",
-          height: "100px",
-        }}
+                    <TextBox
+                        title="Our Mission"
+                        text={`We aim to develop a low-cost female crash test dummy modeled after a 50th percentile woman to address the gender gaps in vehicle safety testing.`}
+                        className="mission-follower"
+                        style={{
+                          transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`,
+                        }}
                     />
                   </div>
               </div>
@@ -110,7 +105,7 @@ allowing vehicle safety designs to better account for women’s injury risk with
                   title="Electrical"
                   className="team-names"
                 />
-                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+                <button className="buttons-container LearnMore" onClick={() => navigate("/team/electrical")}>LEARN MORE</button>
               </div>
 
               <div className="team-stack">
@@ -118,7 +113,7 @@ allowing vehicle safety designs to better account for women’s injury risk with
                   title="Mechanical"
                   className="team-names"
                 />
-                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+                <button className="buttons-container LearnMore" onClick={() => navigate("/team/mechanical")}>LEARN MORE</button>
               </div>
 
               <div className="team-stack">
@@ -126,7 +121,7 @@ allowing vehicle safety designs to better account for women’s injury risk with
                   title="Software"
                   className="team-names"
                 />
-                <button className="buttons-container LearnMore" onClick={() => {}}>LEARN MORE</button>
+                <button className="buttons-container LearnMore" onClick={() => navigate("/team/software")}>LEARN MORE</button>
               </div>
             </div>
           </div>
