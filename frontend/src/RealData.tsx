@@ -2,15 +2,15 @@ import React from "react";
 import AIC from "./components/aic.js";
 import "./RealData.css";
 import meow from "./assets/meow.png";
-
+import crashVideo from "./assets/official_crash_vid.mov";
 
 const crashData = {
   id: 1,
   timestamp: "3.4.5",
-  video: "/assets/crash1.mp4",
-  angle: "67",
+  video: crashVideo,
+  angle: "0",
   type: "Frontal",
-  speed: "10 mph",
+  speed: "3 mph",
   values: {
     HIC: 67,
     FLR: 67,
