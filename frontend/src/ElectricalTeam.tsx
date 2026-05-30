@@ -1,7 +1,7 @@
 import React from "react";
 import "./TeamPage.css";
 import TextBox from "./components/textBox.js";
-import teamPhoto from "./assets/kitty2.png";
+import teamPhoto from "./assets/aboutUs/kitty2.png";
 
 const ElectricalTeam: React.FC = () => {
   return (

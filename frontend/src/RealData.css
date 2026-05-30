@@ -32,12 +32,20 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-top: 60px;
+  position: relative;
+  isolation: isolate;
+  border-radius: 14px;
+  --mx: 50%;
+  --my: 50%;
 }
 
 .rd-crash-video {
   width: 100%;
   max-width: 878px;
-  min-height: 555px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
   border-radius: 10px;
   background: #000;
   display: block;
@@ -88,6 +96,130 @@
   align-items: center;
   min-height: 300px;
   gap: 0px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 50%;
+}
+
+/* Cursor-following glow — mirrors .product-statement on the home page */
+.rd-panel::before,
+.rd-chart::before,
+.rd-video-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      160px circle at var(--mx) var(--my),
+      rgba(255, 200, 230, 0.08),
+      rgba(180, 220, 255, 0.04) 45%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    radial-gradient(
+      200px circle at calc(var(--mx) - 30px) calc(var(--my) + 10px),
+      rgba(190, 255, 230, 0.05),
+      rgba(220, 200, 255, 0.03) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    radial-gradient(
+      90px circle at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 75%
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    --mx 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    --my 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.rd-panel::after,
+.rd-chart::after,
+.rd-video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120px circle at calc(var(--mx) - 50px) calc(var(--my) + 15px),
+      rgba(255, 230, 250, 0.06),
+      rgba(255, 255, 255, 0) 80%
+    ),
+    radial-gradient(
+      100px circle at calc(var(--mx) - 90px) calc(var(--my) - 10px),
+      rgba(200, 240, 255, 0.045),
+      rgba(255, 255, 255, 0) 80%
+    ),
+    radial-gradient(1.5px circle at calc(var(--mx) - 60px) calc(var(--my) - 20px), rgba(255, 230, 250, 0.35), transparent 60%),
+    radial-gradient(1px circle at calc(var(--mx) + 30px) calc(var(--my) + 15px), rgba(200, 240, 255, 0.3), transparent 60%),
+    radial-gradient(1.2px circle at calc(var(--mx) - 30px) calc(var(--my) - 40px), rgba(230, 255, 220, 0.28), transparent 60%),
+    radial-gradient(1px circle at calc(var(--mx) - 90px) calc(var(--my) + 25px), rgba(220, 210, 255, 0.3), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    --mx 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    --my 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.rd-panel:hover::before,
+.rd-panel:hover::after,
+.rd-chart:hover::before,
+.rd-chart:hover::after,
+.rd-video-wrapper:hover::before,
+.rd-video-wrapper:hover::after {
+  opacity: 1;
+}
+
+.rd-panel.is-moving::before,
+.rd-chart.is-moving::before,
+.rd-video-wrapper.is-moving::before {
+  animation: glow-morph 2.4s ease-in-out infinite alternate;
+}
+
+.rd-panel.is-moving::after,
+.rd-chart.is-moving::after,
+.rd-video-wrapper.is-moving::after {
+  animation: glow-morph-trail 3.2s ease-in-out infinite alternate;
+}
+
+.rd-panel > *,
+.rd-chart > *,
+.rd-video-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+@property --mx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --my {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@keyframes glow-morph {
+  0%   { filter: blur(0px); transform: scale(1); }
+  50%  { filter: blur(2px); transform: scale(1.08); }
+  100% { filter: blur(1px); transform: scale(0.96); }
+}
+
+@keyframes glow-morph-trail {
+  0%   { filter: blur(1px); transform: scale(1); }
+  50%  { filter: blur(3px); transform: scale(1.15); }
+  100% { filter: blur(2px); transform: scale(0.9); }
 }
 
 .rd-panel-title {
@@ -133,6 +265,47 @@
   display: flex;
   align-items: center;
   gap: 25px;
+}
+
+.rd-field-label,
+.rd-field-value,
+.rd-value-label,
+.rd-value-num,
+.rd-measured-part,
+.rd-measured-metric,
+.rd-measured-val {
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    backdrop-filter 0.35s ease,
+    color 0.35s ease;
+}
+
+.rd-field-label:hover,
+.rd-field-value:hover,
+.rd-value-label:hover,
+.rd-value-num:hover,
+.rd-measured-part:hover,
+.rd-measured-metric:hover,
+.rd-measured-val:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform: translateY(-1px);
+  color: #fff;
 }
 
 .rd-field-label {
@@ -237,6 +410,10 @@
 
 .rd-learn-more:hover {
   background: rgba(200, 140, 60, 0.9);
+  box-shadow:
+    0 0 12px rgba(231, 150, 90, 0.55),
+    0 0 24px rgba(231, 150, 90, 0.25);
+  transform: translateY(-1px);
 }
 
 /* ─── Measured Data ─────────────────────────────────────────── */
@@ -293,10 +470,152 @@
   text-align: center;
 }
 
+/* ─── Per-test cards ────────────────────────────────────────── */
+.rd-tests {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.rd-test-card {
+  width: 100%;
+  align-items: stretch;
+  min-height: 0;
+  padding: 24px 32px;
+  gap: 18px;
+}
+
+.rd-test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.rd-test-name {
+  font-family: 'MyFont', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.rd-test-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rd-meta-chip {
+  font-family: 'MyFont', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.rd-meta-chip:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.rd-test-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  width: 100%;
+  align-items: stretch;
+  justify-items: center;
+}
+
+/* ─── Chart ─────────────────────────────────────────────────── */
+.rd-chart {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.rd-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.rd-chart-label {
+  font-family: 'MyFont', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.rd-chart-peak {
+  font-family: 'MyFont', sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.rd-chart-svg {
+  width: 100%;
+  height: 140px;
+  display: block;
+}
+
+.rd-chart-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: #fff;
+}
+
 /* ─── Responsive ────────────────────────────────────────────── */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .rd-panels {
     flex-direction: column;
+  }
+
+  .rd-test-charts {
+    grid-template-columns: 1fr;
   }
 }
 

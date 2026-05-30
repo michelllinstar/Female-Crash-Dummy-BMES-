@@ -88,3 +88,77 @@
   text-align: center;
   flex: 1;
 }
+
+/* ─── Vertical variant ──────────────────────────────────────── */
+.aic-container.aic-vertical {
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+  width: auto;
+  gap: 10px;
+}
+
+.aic-container.aic-vertical .aic-labels {
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: 100%;
+  padding: 1px 0;
+  align-items: flex-end;
+}
+
+.aic-container.aic-vertical .aic-label {
+  text-align: right;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.aic-container.aic-vertical .aic-bar-track {
+  width: 10px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aic-container.aic-vertical .aic-bar {
+  width: 10px;
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(
+    to bottom,
+    #3ecf6a 0%,
+    #a8d84e 16.6%,
+    #f5c842 33.3%,
+    #f59b2b 50%,
+    #f06030 66.6%,
+    #e03030 83.3%,
+    #c01818 100%
+  );
+}
+
+.aic-container.aic-vertical .aic-marker {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 4px;
+}
+
+.aic-container.aic-vertical .aic-numbers {
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: 100%;
+  padding: 1px 0;
+  align-items: flex-start;
+}
+
+.aic-container.aic-vertical .aic-number {
+  text-align: left;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

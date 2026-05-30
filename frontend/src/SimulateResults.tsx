@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SimulateResults.css";
-import SimulateUI from "./components/SimulateUI.js";
 import AIC from "./components/aic.js";
 import TextBox from "./components/textBox.js";
 
@@ -12,37 +11,43 @@ const crashData = {
     NIC: 67,
     PLR: 67,
   },
- 
+};
 
+const metricLabels: Record<string, string> = {
+  HIC: "Head Injury Criteria",
+  FLR: "Femur Load Risk",
+  CI: "Chest Injury",
+  NIC: "Neck Injury Criteria",
+  PLR: "Pelvis Load Risk",
 };
 
 const SimulateResults: React.FC = () => {
-	return ( 
-	<div className="SimulatorResults-page">
-        <AIC/>
-		
-		<TextBox title="Injury Prediction" />
-		{/* Values */}
-          <div className="rd-panel rd-panel-right">
-            <span className="rd-panel-title">Values:</span>
-            <div className="rd-values-list">
-              {Object.entries(crashData.values).map(([key, val]) => (
-                <div className="rd-value-row" key={key}>
-                  <div className="rd-value-label">{key}</div>
-                  <div className="rd-value-num">{val}</div>
-                </div>
-              ))}
-              <div className="rd-value-row">
-                <div className="rd-value-spacer" />
-                <button className="rd-learn-more">LEARN MORE</button>
-              </div>
-            </div>
-          </div>
-        </div>
-	
+  return (
+    <div className="sim-results-page">
+      <h1 className="sim-results-title">Simulation Results</h1>
 
-	
-	);
+      <div className="sim-results-intro">
+        <TextBox
+          title="Injury Prediction"
+          text="Predicted injury values from your simulated crash scenario, scored against the Abbreviated Injury Scale."
+        />
+      </div>
+
+      <div className="sim-results-aic">
+        <AIC />
+      </div>
+
+      <div className="sim-results-grid">
+        {Object.entries(crashData.values).map(([key, val]) => (
+          <TextBox
+            key={key}
+            title={`${key} — ${val}`}
+            text={metricLabels[key] ?? ""}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default SimulateResults;

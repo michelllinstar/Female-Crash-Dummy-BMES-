@@ -2,13 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import TextBox from './components/textBox.js';
-import ucla from "./assets/ucla.png";
+import dummy from "./assets/home/dummy.jpg";
+import dummy1 from "./assets/home/dummy1.jpg";
+import dummy2 from "./assets/home/dummy2.jpg";
+import dummy3 from "./assets/home/dummy3.jpg";
+import electrical1 from "./assets/home/electrical_!.jpg";
+import mechanical1 from "./assets/home/mechanical_1.jpg";
 
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const limit = 15; // max px the follower drifts from its anchor
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  const galleryImages = [dummy, dummy2, dummy3, electrical1, mechanical1, dummy1];
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightbox]);
+  const limit = 6; // max px the follower drifts from its anchor
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -47,13 +69,10 @@ allowing vehicle safety designs to better account for women’s injury risk with
                   <div className="hero-text">
                     FEMALE CRASH DUMMY SIMULATOR
                   </div>
-                  <div className="hero-subtitle">
-                    Building a low-cost, inclusive crash test dummy to close the gender gap in vehicle safety.
-                  </div>
-
                   <div className="hero-textboxes">  
                     <TextBox
-                        text={`The Female Crash dummy simulator is a blah blah blah; placeholder text`}
+                        text={`Building a low-cost, inclusive crash test dummy to close the gender gap in vehicle safety. The Female Crash Dummy Simulator lets you explore impact data and safety insights modeled after a 50th percentile woman — making bioengineering research more representative of the people it's meant to protect.`}
+                        className="hero-intro"
                         style={{ width: '598px', height: '370px' }}
                     />
                     <TextBox
@@ -86,13 +105,13 @@ allowing vehicle safety designs to better account for women’s injury risk with
 
           <div className="description-block">
             <h1>Impact</h1>
-            <div style={{display:"flex", flexDirection:"row", gap:"20%"}}>
+            <div style={{display:"flex", flexDirection:"row", gap:"4%", alignItems:"center"}}>
               <TextBox
                 text={impact_text}
                 className="bottom-textboxes"
                 style={{width:"50%"}}
               />
-              <img src={ucla} style={{width:"40%", height:"auto", alignItems:"right"}}/>
+              <img src={dummy1} style={{width:"55%", aspectRatio:"16 / 9", height:"auto", objectFit:"cover", borderRadius:"12px"}}/>
             </div>
           </div>
           
@@ -128,12 +147,14 @@ allowing vehicle safety designs to better account for women’s injury risk with
 
           <div className="description-block">
             <div className="images">
-              <img src={ucla} />
-              <img src={ucla} />
-              <img src={ucla} />
-              <img src={ucla} />
-              <img src={ucla} />
-              <img src={ucla} />
+              {galleryImages.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  onClick={() => setLightbox(src)}
+                  style={{ cursor: "zoom-in" }}
+                />
+              ))}
             </div>
           </div>
 
@@ -145,7 +166,29 @@ allowing vehicle safety designs to better account for women’s injury risk with
 
         </div>
 </div>
-  
+
+      {lightbox && (
+        <div
+          className="lightbox-overlay"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            className="lightbox-close"
+            onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <img
+            src={lightbox}
+            alt=""
+            className="lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };

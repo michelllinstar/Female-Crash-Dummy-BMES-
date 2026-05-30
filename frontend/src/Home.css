@@ -19,12 +19,10 @@
     linear-gradient(to bottom,     rgba(0,0,0,0) 0%,
     rgba(0, 0, 0, 0.7) 24%,
     #0C0C0A 40%),
-    url("./assets/femalecd.png");
+    url("./assets/home/femalecd.png");
 
-  /* Match the sizes to the images above: gradient is 100%, image is 80% */
- background-size: 100% 100%, 80% auto;
+  background-size: 100% 100%, 80% auto;
 
-  /* Constrain the image to the top center */
   background-position: center, right top;
   
   background-repeat: no-repeat;
@@ -99,9 +97,14 @@
 
 /* "Our Mission" box: anchored over the bottom-left corner of the first
    text box, nudged slightly upward, drifting with the cursor via transform. */
+.hero-textboxes > .hero-intro {
+    justify-content: flex-start;
+    padding-top: 90px !important;
+}
+
 .hero-textboxes > .mission-follower {
     position: absolute !important;
-    top: 300px;
+    top: 150px;
     left: 0;
     width: 440px !important;
     height: auto !important;
@@ -113,12 +116,12 @@
 
 .hero-textboxes > .mission-follower .statement-title {
     margin: 0 0 4px 0;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .hero-textboxes > .mission-follower .statement-description {
     padding: 0;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.4;
 }
 
@@ -382,9 +385,10 @@ h1 {
 
 .images img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9; /* Keeps images uniform */
-  object-fit: cover;    /* Prevents stretching */
+  height: 100%;
+  aspect-ratio: 4 / 3;  /* matches the natural photo proportions */
+  object-fit: cover;    /* fills the tile without distortion */
+  display: block;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease;
@@ -399,4 +403,105 @@ h1 {
   .images {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* ─── Lightbox ───────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 40px;
+  box-sizing: border-box;
+  animation: lightbox-fade 0.2s ease-out;
+  cursor: zoom-out;
+}
+
+.lightbox-image {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  cursor: default;
+  animation: lightbox-pop 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: inherit;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+  opacity: 1;
+  transform: scale(1.1);
+  outline: none;
+  background: transparent;
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lightbox-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Unified hover glow for buttons ─────────────────────────── */
+.buttons-container .Simulate,
+.buttons-container .AboutUs,
+.buttons-container .RealData,
+.buttons-container .Information,
+.LearnMore,
+.resource-buttons {
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
+}
+
+.buttons-container .Simulate:hover,
+.LearnMore:hover,
+.resource-buttons:hover {
+  border-color: rgba(255, 220, 180, 0.6) !important;
+  box-shadow:
+    0 0 14px rgba(231, 150, 90, 0.55),
+    0 0 28px rgba(231, 150, 90, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+.buttons-container .AboutUs:hover,
+.buttons-container .RealData:hover,
+.buttons-container .Information:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.25),
+    0 0 24px rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
 }

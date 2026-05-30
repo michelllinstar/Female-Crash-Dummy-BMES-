@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Info.css";
 import TextBox from './components/textBox.js';
-import femalecd from './assets/femalecd.png';
+import femalecd from './assets/pictures/femalecd.png';
 import AIC from './components/aic.js';
 
 export function Header({ text }: { text: string }) {

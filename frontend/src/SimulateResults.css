@@ -1,0 +1,61 @@
+.sim-results-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 90px 150px 150px 150px;
+  color: white;
+  font-family: 'MyFont', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sim-results-page .sim-results-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.sim-results-page .sim-results-aic {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.sim-results-page .sim-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.sim-results-page .sim-results-intro {
+  width: 100%;
+  max-width: 900px;
+}
+
+@media (max-width: 900px) {
+  .sim-results-page {
+    padding: 90px 20px 60px 20px;
+  }
+  .sim-results-page .sim-results-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -48,7 +48,131 @@ border-radius: 20px;
     padding: 5%;             /* minimal padding to avoid sticking to edges */
   overflow: hidden;          /* hide overflowing text */
   text-align: center;
+
+  position: relative;
+  isolation: isolate;
+  --mx: 50%;
+  --my: 50%;
 }
+
+/* Register cursor coords so they can be smoothly transitioned (gives the swishy trail) */
+@property --mx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --my {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+/* Cursor-following glow — streaky, non-circular with a drag trail */
+.product-statement::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    /* main glow circle */
+    radial-gradient(
+      160px circle at var(--mx) var(--my),
+      rgba(255, 200, 230, 0.08),
+      rgba(180, 220, 255, 0.04) 45%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    /* secondary iridescent circle, slightly offset for drag */
+    radial-gradient(
+      200px circle at calc(var(--mx) - 30px) calc(var(--my) + 10px),
+      rgba(190, 255, 230, 0.05),
+      rgba(220, 200, 255, 0.03) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    /* tight bright core */
+    radial-gradient(
+      90px circle at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 75%
+    );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    --mx 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    --my 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+/* Drag/sparkle layer — elongated wake with extra lag */
+.product-statement::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    /* trailing circles for drag effect */
+    radial-gradient(
+      120px circle at calc(var(--mx) - 50px) calc(var(--my) + 15px),
+      rgba(255, 230, 250, 0.06),
+      rgba(255, 255, 255, 0) 80%
+    ),
+    radial-gradient(
+      100px circle at calc(var(--mx) - 90px) calc(var(--my) - 10px),
+      rgba(200, 240, 255, 0.045),
+      rgba(255, 255, 255, 0) 80%
+    ),
+    /* sparkles scattered along the trail */
+    radial-gradient(1.5px circle at calc(var(--mx) - 60px) calc(var(--my) - 20px), rgba(255, 230, 250, 0.35), transparent 60%),
+    radial-gradient(1px circle at calc(var(--mx) + 30px) calc(var(--my) + 15px), rgba(200, 240, 255, 0.3), transparent 60%),
+    radial-gradient(1.2px circle at calc(var(--mx) - 30px) calc(var(--my) - 40px), rgba(230, 255, 220, 0.28), transparent 60%),
+    radial-gradient(1px circle at calc(var(--mx) - 90px) calc(var(--my) + 25px), rgba(220, 210, 255, 0.3), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    --mx 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    --my 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+/* Glow stays visible while cursor is over the box */
+.product-statement:hover::before,
+.product-statement:hover::after {
+  opacity: 1;
+}
+
+/* Morph animation only runs while the cursor is actively moving */
+.product-statement.is-moving::before {
+  animation: glow-morph 2.4s ease-in-out infinite alternate;
+}
+.product-statement.is-moving::after {
+  animation: glow-morph-trail 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-morph {
+  0%   { filter: blur(0px); transform: scale(1); }
+  50%  { filter: blur(2px); transform: scale(1.08); }
+  100% { filter: blur(1px); transform: scale(0.96); }
+}
+
+@keyframes glow-morph-trail {
+  0%   { filter: blur(1px); transform: scale(1); }
+  50%  { filter: blur(3px); transform: scale(1.15); }
+  100% { filter: blur(2px); transform: scale(0.9); }
+}
+
+.product-statement.follower::before,
+.product-statement.follower::after {
+  display: none;
+}
+
+.product-statement > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Specifically for the cursor follower — inherits the glass style of .product-statement */
 .product-statement.follower {
   /* Smoothly trail the cursor */
@@ -73,7 +197,7 @@ border-radius: 20px;
 /* Paragraph styling */
 .statement-description {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
     /* prevent highlight/halo behind text */
   background: transparent;
