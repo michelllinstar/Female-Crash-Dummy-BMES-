@@ -337,3 +337,16 @@
     font-size: 12px;
   }
 }
+
+.simulate-error {
+  margin: 12px auto 0;
+  max-width: 600px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(220, 70, 70, 0.15);
+  border: 1px solid rgba(220, 70, 70, 0.45);
+  color: #ffd6d6;
+  font-family: 'MyFont', sans-serif;
+  font-size: 13px;
+  text-align: center;
+}

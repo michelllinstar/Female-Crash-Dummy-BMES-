@@ -181,9 +181,9 @@
 
 .top-flip-container .flip-front .statement-title,
 .top-flip-container .flip-back .statement-title {
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   padding: 0 6px;
-  font-size: 18px;
+  font-size: 28px;
   line-height: 1.3;
 }
 
@@ -191,17 +191,84 @@
 .top-flip-container .flip-back .statement-description {
   padding: 0 6px;
   margin: 0;
-  font-size: 14px;
-  line-height: 1.45;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 /* ─── Top flip card (above the hstack) ─────────────────────── */
 .top-flip-container {
   width: 100%;
-  height: 160px;             /* explicit fixed height for the top card */
+  height: 220px;             /* explicit fixed height for the top card */
   position: relative;
   perspective: 1000px;
   cursor: pointer;
+}
+
+/* ─── Top AIS card: real 3D flip ────────────────────────────── */
+.info-vstack > .top-textbox-container:not(.top-flip-container) {
+  width: 100%;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .flip-card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .flip-front,
+.info-vstack > .top-textbox-container:not(.top-flip-container) .flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 24px 36px;
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .flip-back {
+  transform: rotateY(180deg);
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .statement-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.info-vstack > .top-textbox-container:not(.top-flip-container) .statement-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ais-back {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ais-back .statement-description {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.ais-back .aic-shrink {
+  width: 90%;
+  height: auto;
+  flex: 0 0 auto;
 }
 .aic-shrink {
   width: 80%;

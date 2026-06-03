@@ -46,24 +46,28 @@ const Info: React.FC = () => {
     <div className="info-page">
       <div className="info-vstack">
 
-        {/* Top card: fades between front and back */}
+        {/* Top card: flips between AIC bar and info text */}
         <FlipCard
           variant="fade"
-          height="160px"
+          height="220px"
           front={
-            <TextBox
-              title="ABBREVIATED INJURY SCALE"
-              text={`A globally recognized system used to describe and classify the severity of injuries.
-It provides a standardized way to assess trauma, making it easier for clinicians, researchers,
-and safety professionals to communicate injury severity, compare outcomes,
-and support data-driven decisions in injury prevention and care.`}
-            />
+            <div className="product-statement ais-front">
+              <h1 className="statement-title">ABBREVIATED INJURY SCALE</h1>
+              <div className="aic-shrink">
+                <AIC />
+              </div>
+            </div>
           }
-         back={
-          <div className="aic-shrink">
-            <AIC />
-          </div>
-        }
+          back={
+            <div className="product-statement ais-back">
+              <p className="statement-description">
+                A globally recognized system used to describe and classify the severity of injuries.
+                It provides a standardized way to assess trauma, making it easier for clinicians, researchers,
+                and safety professionals to communicate injury severity, compare outcomes,
+                and support data-driven decisions in injury prevention and care.
+              </p>
+            </div>
+          }
         />
 
         {/* hstack: image + inner vstack of 3D flip cards */}

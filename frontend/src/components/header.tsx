@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title, links }) => {
             <div className="logo">
                 {/* Wrap your logo/image in a NavLink pointing to "/" */}
                 <NavLink to="/">
-                    <img src={logo} alt="logo" style={{ maxWidth: '36px', height: 'auto' }} />
+                    <img src={logo} alt="logo" style={{ maxWidth: '64px', height: 'auto' }} />
                 </NavLink>
             </div>
         

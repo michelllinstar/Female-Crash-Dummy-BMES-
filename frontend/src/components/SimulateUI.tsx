@@ -28,6 +28,64 @@ const SimulateUI: React.FC = () => {
   // NEW: State for popup visibility and storing the result data
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const [simulationResult, setSimulationResult] = useState<any>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  const ranges: Record<keyof UserInput, { min: number; max: number; minInclusive?: boolean; maxInclusive?: boolean; label: string; unit: string }> = {
+    head_circumference: { min: 30, max: 70, label: "Head Circumference", unit: "cm" },
+    height: { min: 50, max: 250, label: "Height", unit: "cm" },
+    sitting_height: { min: 30, max: 150, label: "Sitting Height", unit: "cm" },
+    weight: { min: 1, max: 300, label: "Weight", unit: "kg" },
+    angle: { min: 0, max: 180, minInclusive: true, maxInclusive: true, label: "Angle", unit: "°" },
+    speed: { min: 0, max: 300, maxInclusive: true, label: "Closing Speed", unit: "km/h" },
+  };
+
+  const validateInputs = (): string | null => {
+    const parsed: Record<string, number> = {};
+    const missing: string[] = [];
+    const nonNumeric: string[] = [];
+    const outOfRange: string[] = [];
+
+    for (const key of Object.keys(ranges) as (keyof UserInput)[]) {
+      const { min, max, minInclusive, maxInclusive, label, unit } = ranges[key];
+      const raw = inputs[key].trim();
+      if (raw === "") {
+        missing.push(label);
+        continue;
+      }
+      const n = Number(raw);
+      if (!Number.isFinite(n)) {
+        nonNumeric.push(label);
+        continue;
+      }
+      const lowOk = minInclusive ? n >= min : n > min;
+      const highOk = maxInclusive ? n <= max : n < max;
+      if (!lowOk || !highOk) {
+        outOfRange.push(`${label} (must be between ${min} and ${max} ${unit})`);
+        continue;
+      }
+      parsed[key] = n;
+    }
+
+    const messages: string[] = [];
+    if (nonNumeric.length) {
+      messages.push(`These fields must be a number: ${nonNumeric.join(", ")}.`);
+    }
+    if (missing.length) {
+      messages.push(`Required fields are missing: ${missing.join(", ")}.`);
+    }
+    if (outOfRange.length) {
+      messages.push(`Out of range: ${outOfRange.join("; ")}.`);
+    }
+    if (
+      parsed.sitting_height !== undefined &&
+      parsed.height !== undefined &&
+      parsed.sitting_height >= parsed.height
+    ) {
+      messages.push("Sitting Height must be less than Height.");
+    }
+
+    return messages.length ? messages.join(" ") : null;
+  };
 
   const handleChange = (name: keyof UserInput, value: string) => {
     setInputs((prev) => ({
@@ -41,15 +99,20 @@ const SimulateUI: React.FC = () => {
   };
 
   const handleSimulate = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("Simulate clicked with inputs:", inputs);
-    setSimulationResult(null); 
+    e.preventDefault();
+    setSimulationResult(null);
+    setValidationError(null);
 
-    e.preventDefault(); // Prevent page reload
+    const err = validateInputs();
+    if (err) {
+      setValidationError(err);
+      return;
+    }
 
     const payload = Object.fromEntries(
-      Object.entries(inputs).map(([key, val]) => [key, parseFloat(val) || 0])
+      Object.entries(inputs).map(([key, val]) => [key, Number(val)])
     );
-    
+
     try {
       const response = await fetch('http://127.0.0.1:8000/simulate', {
         method: 'POST',
@@ -63,13 +126,24 @@ const SimulateUI: React.FC = () => {
         const result = await response.json();
         setSimulationResult(result);
         setIsPopupOpen(true);
-        console.log("New Result:", result);
-        // navigate("/simulateresults", { state: { result } });
       } else {
-        console.error("Backend returned an error:", response.status);
+        let message = `Backend rejected the inputs (status ${response.status}).`;
+        try {
+          const body = await response.json();
+          if (body?.detail) {
+            if (Array.isArray(body.detail)) {
+              message = body.detail
+                .map((d: any) => `${(d.loc || []).slice(-1)[0] || "input"}: ${d.msg}`)
+                .join("; ");
+            } else {
+              message = String(body.detail);
+            }
+          }
+        } catch { /* ignore parse errors */ }
+        setValidationError(message);
       }
     } catch (error) {
-      console.error("Network error - is your backend running?", error);
+      setValidationError("Network error — is the backend running?");
     }
   };
 
@@ -128,6 +202,9 @@ const SimulateUI: React.FC = () => {
           </div>
         ))}
       </div>
+      {validationError && (
+        <div className="simulate-error" role="alert">{validationError}</div>
+      )}
       <button className="simulate-button" onClick={(e) => handleSimulate(e)}>
         Simulate
       </button>
@@ -152,7 +229,7 @@ const SimulateUI: React.FC = () => {
                     return (
                       <div className="result-item" key={key}>
                         <span className="result-label">{formattedKey}</span>
-                        <span className="result-value">{String(value)}</span>
+                        <span className="result-value">{typeof value === "number" ? value.toFixed(2) : String(value)}</span>
                       </div>
                     );
                   })}

@@ -13,14 +13,21 @@ import mechanical1 from "./assets/home/mechanical_1.jpg";
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const galleryImages = [dummy, dummy2, dummy3, electrical1, mechanical1, dummy1];
 
+  const showPrev = () =>
+    setLightboxIndex((i) => (i === null ? i : (i - 1 + galleryImages.length) % galleryImages.length));
+  const showNext = () =>
+    setLightboxIndex((i) => (i === null ? i : (i + 1) % galleryImages.length));
+
   useEffect(() => {
-    if (!lightbox) return;
+    if (lightboxIndex === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "Escape") setLightboxIndex(null);
+      else if (e.key === "ArrowLeft") showPrev();
+      else if (e.key === "ArrowRight") showNext();
     };
     window.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -29,7 +36,7 @@ const Home: React.FC = () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [lightbox]);
+  }, [lightboxIndex]);
   const limit = 6; // max px the follower drifts from its anchor
 
   useEffect(() => {
@@ -87,11 +94,11 @@ allowing vehicle safety designs to better account for women’s injury risk with
               </div>
             </div>
           <div className="buttons-container">
-      <button className="Simulate" onClick={() => {}}>Simulate</button>
-        <div className="hStack">  
-          <button className="AboutUs" onClick={() => {}}>About Us</button>
-          <button className="RealData" onClick={() => {}}>Real Data</button>
-          <button className="Information" onClick={() => {}}>Information</button>
+      <button className="Simulate" onClick={() => navigate("/simulator")}>Simulate</button>
+        <div className="hStack">
+          <button className="AboutUs" onClick={() => navigate("/about_us")}>About Us</button>
+          <button className="RealData" onClick={() => navigate("/real_data")}>Real Data</button>
+          <button className="Information" onClick={() => navigate("/info")}>Information</button>
         </div>
         </div>
         <div className="descriptions">
@@ -105,7 +112,7 @@ allowing vehicle safety designs to better account for women’s injury risk with
 
           <div className="description-block">
             <h1>Impact</h1>
-            <div style={{display:"flex", flexDirection:"row", gap:"4%", alignItems:"center"}}>
+            <div style={{display:"flex", flexDirection:"row", gap:"4%", alignItems:"flex-start"}}>
               <TextBox
                 text={impact_text}
                 className="bottom-textboxes"
@@ -151,7 +158,7 @@ allowing vehicle safety designs to better account for women’s injury risk with
                 <img
                   key={i}
                   src={src}
-                  onClick={() => setLightbox(src)}
+                  onClick={() => setLightboxIndex(i)}
                   style={{ cursor: "zoom-in" }}
                 />
               ))}
@@ -160,33 +167,47 @@ allowing vehicle safety designs to better account for women’s injury risk with
 
           <div className="resources">  
             <button className="resource-buttons" onClick={() => {}}>slides</button>
-            <button className="resource-buttons" onClick={() => {}}>resources</button>
-            <button className="resource-buttons" onClick={() => {}}>figma</button>
+            <button className="resource-buttons" onClick={() => window.open("https://discord.com/channels/@me/1458676107925520405/1511541793055834183", "_blank", "noopener,noreferrer")}>resources</button>
+            <button className="resource-buttons" onClick={() => window.open("https://www.figma.com/design/pYCHiJ3niK84WnfMWRkh01/BMES-FCD?node-id=0-1&t=TlzwBYwCP5b6WsX7-1", "_blank", "noopener,noreferrer")}>figma</button>
           </div>
 
         </div>
 </div>
 
-      {lightbox && (
+      {lightboxIndex !== null && (
         <div
           className="lightbox-overlay"
-          onClick={() => setLightbox(null)}
+          onClick={() => setLightboxIndex(null)}
           role="dialog"
           aria-modal="true"
         >
           <button
             className="lightbox-close"
-            onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
             aria-label="Close"
           >
             ×
           </button>
+          <button
+            className="lightbox-nav lightbox-prev"
+            onClick={(e) => { e.stopPropagation(); showPrev(); }}
+            aria-label="Previous image"
+          >
+            ‹
+          </button>
           <img
-            src={lightbox}
+            src={galleryImages[lightboxIndex]}
             alt=""
             className="lightbox-image"
             onClick={(e) => e.stopPropagation()}
           />
+          <button
+            className="lightbox-nav lightbox-next"
+            onClick={(e) => { e.stopPropagation(); showNext(); }}
+            aria-label="Next image"
+          >
+            ›
+          </button>
         </div>
       )}
     </div>
