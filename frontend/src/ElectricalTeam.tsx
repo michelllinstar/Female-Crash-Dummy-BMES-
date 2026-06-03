@@ -1,7 +1,8 @@
 import React from "react";
 import "./TeamPage.css";
 import TextBox from "./components/textBox.js";
-import teamPhoto from "./assets/aboutUs/kitty2.png";
+import TeamNav from "./components/TeamNav";
+import teamPhoto from "./assets/pictures/electric.jpg";
 
 const ElectricalTeam: React.FC = () => {
   return (
@@ -16,14 +17,14 @@ const ElectricalTeam: React.FC = () => {
         <div className="process-intro">
           <TextBox
             title="Our Process"
-            text="The electrical team designs and integrates the sensor and signal pipeline that turns crash forces into measurable data. We move from circuit prototyping on breadboards, to PCB design, to a fully wired dummy ready for impact testing."
+            text="The electrical team designs and integrates the sensor and signal pipeline that translates crash forces into measurable data. Our work progresses from circuit prototyping on breadboards, to printed circuit board design, to a fully wired dummy prepared for impact testing."
           />
         </div>
 
         <div className="process-steps">
           <TextBox
             title="1. Sensor Selection"
-            text="We evaluate accelerometers, load cells, and pressure sensors based on g-range, sampling rate, and cost, then map each sensor to the head, neck, chest, femur, and pelvis injury criteria."
+            text="We evaluate accelerometers, load cells, and pressure sensors according to acceleration range, sampling rate, and cost, and then map each sensor to the head, neck, chest, femur, and pelvis injury criteria."
           />
           <TextBox
             title="2. Circuit Prototyping"
@@ -31,22 +32,24 @@ const ElectricalTeam: React.FC = () => {
           />
           <TextBox
             title="3. PCB Design & Fabrication"
-            text="Validated circuits are laid out in KiCad as compact PCBs that fit inside the dummy cavity. Boards are ordered, populated, and bench-tested before assembly."
+            text="Validated circuits are laid out in KiCad as compact printed circuit boards that fit within the dummy cavity. Boards are ordered, populated, and tested on the bench prior to assembly."
           />
           <TextBox
             title="4. Microcontroller Integration"
-            text="An onboard microcontroller samples all channels in sync, timestamps the data, and streams it to the software team's pipeline over a serial or wireless link."
+            text="An onboard microcontroller samples all channels in synchrony, timestamps the data, and streams it to the software team's pipeline over a serial or wireless link."
           />
           <TextBox
             title="5. Power & Wiring"
-            text="We design the battery, regulation, and harness so the system survives a crash event without losing data, while keeping cable routing clean inside the dummy."
+            text="We design the battery, regulation, and harness so that the system withstands a crash event without losing data, while maintaining clean cable routing inside the dummy."
           />
           <TextBox
             title="6. Calibration & Testing"
-            text="Final boards are calibrated against known reference loads, then stress-tested in mock impact runs to verify that data matches expected biomechanics."
+            text="Final boards are calibrated against known reference loads and then evaluated under simulated impact conditions to verify that the recorded data aligns with expected biomechanics."
           />
         </div>
       </div>
+
+      <TeamNav current="electrical" />
     </div>
   );
 };

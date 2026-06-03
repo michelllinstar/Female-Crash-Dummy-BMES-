@@ -260,9 +260,12 @@
   gap: 12px;
 }
 
-.ais-back .statement-description {
+.ais-back .statement-description,
+.top-flip-container .flip-back .ais-back .statement-description,
+.top-flip-container .flip-back.ais-back .statement-description {
   flex: 0 0 auto;
   font-size: 14px;
+  line-height: 1.45;
 }
 
 .ais-back .aic-shrink {
